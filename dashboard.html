@@ -1,0 +1,464 @@
+<title>Genocide Perceptions — Experiment 2</title>
+<style>
+:root {
+  --bg:#edf1f8;--surface:#fff;--surface2:#f2f5fb;--border:#cdd5e8;--border2:#e4e8f4;
+  --text:#111828;--text2:#5a6a88;--text3:#9aaac4;
+  --accent:#2e7ab4;--sig:#c05020;--sig-bg:rgba(192,80,32,.08);
+  --null:#8a9ab8;--kill:#c96050;--sex:#c98020;--infra:#2e7ab4;--ctrl:#7a8a9a;
+  --shadow:rgba(17,25,40,.08);
+}
+@media(prefers-color-scheme:dark){:root{
+  --bg:#0d1622;--surface:#152035;--surface2:#1a2840;--border:#243450;--border2:#1c2b42;
+  --text:#d0daf0;--text2:#7a90b8;--text3:#4a6080;
+  --accent:#5aaddc;--sig:#e07840;--sig-bg:rgba(224,120,64,.13);
+  --null:#4a6080;--kill:#e07060;--sex:#e09830;--infra:#5aaddc;--ctrl:#6a8090;
+  --shadow:rgba(0,0,0,.45);
+}}
+:root[data-theme=light]{
+  --bg:#edf1f8;--surface:#fff;--surface2:#f2f5fb;--border:#cdd5e8;--border2:#e4e8f4;
+  --text:#111828;--text2:#5a6a88;--text3:#9aaac4;
+  --accent:#2e7ab4;--sig:#c05020;--sig-bg:rgba(192,80,32,.08);
+  --null:#8a9ab8;--kill:#c96050;--sex:#c98020;--infra:#2e7ab4;--ctrl:#7a8a9a;
+  --shadow:rgba(17,25,40,.08);
+}
+:root[data-theme=dark]{
+  --bg:#0d1622;--surface:#152035;--surface2:#1a2840;--border:#243450;--border2:#1c2b42;
+  --text:#d0daf0;--text2:#7a90b8;--text3:#4a6080;
+  --accent:#5aaddc;--sig:#e07840;--sig-bg:rgba(224,120,64,.13);
+  --null:#4a6080;--kill:#e07060;--sex:#e09830;--infra:#5aaddc;--ctrl:#6a8090;
+  --shadow:rgba(0,0,0,.45);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5}
+.hdr{background:var(--surface);border-bottom:1px solid var(--border);padding:16px 20px 0;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px var(--shadow)}
+.hdr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
+.hdr-title{font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;line-height:1.3}
+.hdr-sub{font-size:11px;color:var(--text2);font-style:italic;margin-top:2px}
+.thm-btn{background:var(--surface2);border:1px solid var(--border);border-radius:3px;color:var(--text2);cursor:pointer;font-size:11px;padding:4px 9px}
+.nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.ntab{background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);cursor:pointer;font-size:11px;font-weight:500;letter-spacing:.05em;padding:7px 14px;text-transform:uppercase;white-space:nowrap;transition:color .15s,border-color .15s}
+.ntab:hover{color:var(--text)}
+.ntab.on{border-bottom-color:var(--accent);color:var(--accent)}
+main{padding:20px;max-width:880px}
+section{margin-bottom:36px}
+.sh{font-family:Georgia,serif;font-size:15px;font-weight:normal;border-bottom:1px solid var(--border);padding-bottom:7px;margin-bottom:14px;text-wrap:balance}
+.stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
+.stat{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:13px 15px}
+.stat-v{font-size:24px;font-variant-numeric:tabular-nums;font-weight:600;line-height:1}
+.stat-v.a{color:var(--accent)}.stat-v.s{color:var(--sig)}
+.stat-l{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:14px;overflow-x:auto}
+.ctrl-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+.clbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-right:2px;flex-shrink:0}
+.pill{background:var(--surface2);border:1px solid var(--border);border-radius:2px;color:var(--text2);cursor:pointer;font-size:11px;font-weight:500;padding:3px 9px;transition:all .15s}
+.pill:hover{color:var(--text);border-color:var(--text3)}
+.pill.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.mpill.on{background:var(--surface2);border-color:var(--accent);color:var(--accent)}
+.lgd{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
+.li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
+.ld{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.note{font-size:11px;color:var(--text2);font-style:italic;margin-top:10px;line-height:1.5}
+.ttip{position:fixed;background:var(--surface);border:1px solid var(--border);border-radius:3px;box-shadow:0 4px 16px var(--shadow);color:var(--text);font-size:12px;line-height:1.6;padding:8px 12px;pointer-events:none;z-index:999;display:none;max-width:210px}
+.tt-t{font-weight:600;margin-bottom:2px}
+.tt-s{color:var(--sig)}.tt-n{color:var(--null)}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
+.tbl th{text-align:left;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:1px solid var(--border);padding:5px 8px}
+.tbl td{padding:6px 8px;border-bottom:1px solid var(--border2);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
+.bar-row{display:flex;align-items:center;gap:6px}
+.bar-tr{flex:1;height:5px;background:var(--border2);border-radius:3px;overflow:hidden}
+.bar-f{height:100%;border-radius:3px}
+svg text{font-family:system-ui,sans-serif}
+</style>
+
+<div class="hdr">
+  <div class="hdr-top">
+    <div>
+      <div class="hdr-title">Genocide Perceptions — Experiment 2: Tactic × Severity</div>
+      <div class="hdr-sub">Van Nostrand, Schoner &amp; Arnon (2026) &nbsp;·&nbsp; N = 2,499 &nbsp;·&nbsp; OLS, HC2 robust SEs</div>
+    </div>
+    <button class="thm-btn" onclick="toggleTheme()">☀ / ☾</button>
+  </div>
+  <div class="nav" id="nav">
+    <button class="ntab on" data-sec="overview" onclick="navClick(this)">Overview</button>
+    <button class="ntab" data-sec="sample" onclick="navClick(this)">Sample</button>
+    <button class="ntab" data-sec="means" onclick="navClick(this)">Group means</button>
+    <button class="ntab" data-sec="effects" onclick="navClick(this)">Treatment effects</button>
+    <button class="ntab" data-sec="polarity" onclick="navClick(this)">Sentiment</button>
+  </div>
+</div>
+
+<div id="ttip" class="ttip"></div>
+
+<main>
+
+<section id="overview">
+  <div class="sh">Study overview</div>
+  <div class="stat-row">
+    <div class="stat"><div class="stat-v">2,499</div><div class="stat-l">Respondents (post-exclusion)</div></div>
+    <div class="stat"><div class="stat-v a">7</div><div class="stat-l">Treatment conditions</div></div>
+    <div class="stat"><div class="stat-v">32.5%</div><div class="stat-l">Control genocide rate</div></div>
+    <div class="stat"><div class="stat-v s">70.3%</div><div class="stat-l">Peak rate (Infra, low)</div></div>
+    <div class="stat"><div class="stat-v">17.7%</div><div class="stat-l">Mentioned Gaza / Israel</div></div>
+    <div class="stat"><div class="stat-v">−2.05</div><div class="stat-l">Mean AFINN polarity</div></div>
+  </div>
+  <p class="note">3×2 factorial design crossing three atrocity tactics (killing, sexual violence, infrastructure destruction) with two severity levels (hundreds vs. tens of thousands) plus a no-tactic control. DVs: genocide classification (binary), genocide fit (1–7 scale), support for international action, and preferred response types.</p>
+</section>
+
+<section id="sample">
+  <div class="sh">Sample by treatment condition</div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Condition</th><th>Tactic</th><th>Severity</th><th style="text-align:right">N</th><th>Genocide %</th><th>Fit (1–7)</th><th>Support action</th></tr></thead>
+      <tbody id="stbody"></tbody>
+    </table>
+  </div>
+</section>
+
+<section id="means">
+  <div class="sh">Group means by condition</div>
+  <div class="card">
+    <div class="ctrl-row">
+      <span class="clbl">Outcome:</span>
+      <button class="pill on" onclick="setMDV('genocide_binary',this)">Genocide (binary)</button>
+      <button class="pill" onclick="setMDV('genocide_fit',this)">Fit scale (1–7)</button>
+      <button class="pill" onclick="setMDV('support_action',this)">Support action</button>
+    </div>
+    <div class="lgd">
+      <div class="li"><div class="ld" style="background:var(--ctrl)"></div>Control</div>
+      <div class="li"><div class="ld" style="background:var(--kill)"></div>Killing</div>
+      <div class="li"><div class="ld" style="background:var(--sex)"></div>Sexual violence</div>
+      <div class="li"><div class="ld" style="background:var(--infra)"></div>Infrastructure</div>
+    </div>
+    <svg id="mchart" width="100%" style="display:block"></svg>
+  </div>
+  <p class="note">Raw group means. Tactic colors apply consistently across both severity levels.</p>
+</section>
+
+<section id="effects">
+  <div class="sh">Treatment effects vs. no-tactic control</div>
+  <div class="card">
+    <div class="ctrl-row">
+      <span class="clbl">Outcome:</span>
+      <button class="pill on" onclick="setEDV('genocide_binary',this)">Genocide (binary)</button>
+      <button class="pill" onclick="setEDV('genocide_fit',this)">Fit scale</button>
+      <button class="pill" onclick="setEDV('support_action',this)">Support action</button>
+      <button class="pill" onclick="setEDV('diplomatic',this)">Diplomatic</button>
+      <button class="pill" onclick="setEDV('economic',this)">Economic</button>
+      <button class="pill" onclick="setEDV('humanitarian',this)">Humanitarian</button>
+    </div>
+    <div class="ctrl-row" style="margin-top:-4px">
+      <span class="clbl">Model:</span>
+      <button class="pill mpill on" onclick="setMod('no',this)">No controls</button>
+      <button class="pill mpill" onclick="setMod('ctrl',this)">With controls</button>
+    </div>
+    <div class="lgd" style="margin-top:4px">
+      <div class="li"><div class="ld" style="background:var(--sig)"></div>p &lt; .05 (filled)</div>
+      <div class="li"><div class="ld" style="background:var(--null);opacity:.5"></div>p ≥ .05</div>
+    </div>
+    <svg id="echart" width="100%" style="display:block"></svg>
+  </div>
+  <p class="note">OLS estimates with 95% CIs (HC2 robust SEs). Reference: no-tactic control. Hover dots for exact values. Filled circles = p &lt; .05.</p>
+</section>
+
+<section id="polarity">
+  <div class="sh">Treatment effects on sentiment polarity (real_world_describe)</div>
+  <div class="card">
+    <div class="ctrl-row">
+      <span class="clbl">Model:</span>
+      <button class="pill mpill on" onclick="setPMod('no',this)">No controls</button>
+      <button class="pill mpill" onclick="setPMod('ctrl',this)">With controls</button>
+    </div>
+    <svg id="pchart" width="100%" style="display:block"></svg>
+  </div>
+  <p class="note">AFINN polarity (−5 to +5 per word, averaged per response). N=272 with scoreable text. Reference: no-tactic control.</p>
+</section>
+
+</main>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const CONDS = [
+  {key:'control',  label:'No tactic (control)',                short:'Control',         n:357, t:null,   sev:null},
+  {key:'kill_lo',  label:'Killing — hundreds',                 short:'Killing (100s)',  n:353, t:'kill',  sev:'Low'},
+  {key:'kill_hi',  label:'Killing — tens of thousands',        short:'Killing (10Ks)',  n:353, t:'kill',  sev:'High'},
+  {key:'sex_lo',   label:'Sexual violence — hundreds',         short:'Sex viol (100s)', n:355, t:'sex',   sev:'Low'},
+  {key:'sex_hi',   label:'Sexual violence — tens of thousands',short:'Sex viol (10Ks)', n:362, t:'sex',   sev:'High'},
+  {key:'infra_lo', label:'Infrastructure — hundreds',          short:'Infra (100s)',    n:364, t:'infra', sev:'Low'},
+  {key:'infra_hi', label:'Infrastructure — tens of thousands', short:'Infra (10Ks)',    n:355, t:'infra', sev:'High'},
+];
+
+const TCOL = {null:'var(--ctrl)',kill:'var(--kill)',sex:'var(--sex)',infra:'var(--infra)'};
+
+const MEANS = {
+  genocide_binary:[0.325,0.501,0.442,0.499,0.541,0.703,0.620],
+  genocide_fit:   [1.972,2.448,2.232,2.380,2.566,2.942,2.775],
+  support_action: [0.925,0.968,0.950,0.914,0.916,0.942,0.955],
+};
+
+const DMETA = {
+  genocide_binary:{lbl:'Pr(classified as genocide)',dom:[0,0.80],fmt:v=>(v*100).toFixed(1)+'%'},
+  genocide_fit:   {lbl:'Genocide fit (1–7 scale)',  dom:[1.5,3.2],fmt:v=>v.toFixed(2)},
+  support_action: {lbl:'Pr(support action)',        dom:[0.87,0.99],fmt:v=>(v*100).toFixed(1)+'%'},
+  diplomatic:     {lbl:'Preferred: Diplomatic',     dom:[-0.04,0.06],fmt:v=>v.toFixed(3)},
+  economic:       {lbl:'Preferred: Economic',       dom:[-0.03,0.02],fmt:v=>v.toFixed(3)},
+  humanitarian:   {lbl:'Preferred: Humanitarian',  dom:[-0.07,0.04],fmt:v=>v.toFixed(3)},
+};
+
+// Treatment effects [kill_lo, kill_hi, sex_lo, sex_hi, infra_lo, infra_hi]
+const EFF = {
+  genocide_binary:{
+    no:  [{e:.176,lo:.105,hi:.248,p:1.3e-6},{e:.117,lo:.046,hi:.188,p:1.3e-3},{e:.174,lo:.102,hi:.245,p:1.9e-6},{e:.217,lo:.146,hi:.287,p:2.3e-9},{e:.378,lo:.311,hi:.446,p:2.4e-27},{e:.295,lo:.225,hi:.365,p:2.9e-16}],
+    ctrl:[{e:.179,lo:.107,hi:.251,p:1.0e-6},{e:.116,lo:.045,hi:.188,p:1.5e-3},{e:.174,lo:.102,hi:.245,p:1.9e-6},{e:.218,lo:.147,hi:.289,p:2.2e-9},{e:.380,lo:.312,hi:.448,p:1.3e-27},{e:.294,lo:.224,hi:.365,p:4.1e-16}],
+  },
+  genocide_fit:{
+    no:  [{e:.476,lo:.289,hi:.662,p:6.0e-7},{e:.260,lo:.083,hi:.438,p:4.0e-3},{e:.408,lo:.235,hi:.581,p:4.0e-6},{e:.594,lo:.420,hi:.768,p:2.5e-11},{e:.970,lo:.793,hi:1.148,p:2.9e-26},{e:.803,lo:.624,hi:.982,p:2.6e-18}],
+    ctrl:[{e:.487,lo:.300,hi:.674,p:3.6e-7},{e:.248,lo:.071,hi:.425,p:6.0e-3},{e:.404,lo:.232,hi:.576,p:4.1e-6},{e:.612,lo:.438,hi:.786,p:7.1e-12},{e:.976,lo:.801,hi:1.151,p:4.1e-27},{e:.803,lo:.625,hi:.981,p:1.9e-18}],
+  },
+  support_action:{
+    no:  [{e:.043,lo:.007,hi:.079,p:.018},{e:.024,lo:-.014,hi:.063,p:.213},{e:-.011,lo:-.055,hi:.032,p:.614},{e:-.009,lo:-.052,hi:.034,p:.681},{e:.017,lo:-.023,hi:.057,p:.398},{e:.029,lo:-.009,hi:.068,p:.139}],
+    ctrl:[{e:.042,lo:.007,hi:.077,p:.018},{e:.025,lo:-.013,hi:.062,p:.202},{e:-.015,lo:-.058,hi:.028,p:.499},{e:-.010,lo:-.053,hi:.032,p:.632},{e:.017,lo:-.023,hi:.057,p:.408},{e:.026,lo:-.012,hi:.064,p:.184}],
+  },
+  diplomatic:{
+    no:  [{e:.000,lo:-.020,hi:.021,p:.983},{e:-.008,lo:-.026,hi:.010,p:.372},{e:-.003,lo:-.022,hi:.017,p:.788},{e:.019,lo:-.006,hi:.044,p:.128},{e:.002,lo:-.018,hi:.023,p:.824},{e:.003,lo:-.018,hi:.024,p:.786}],
+    ctrl:[{e:.000,lo:-.021,hi:.020,p:.962},{e:-.009,lo:-.027,hi:.010,p:.358},{e:-.006,lo:-.025,hi:.013,p:.541},{e:.018,lo:-.007,hi:.043,p:.153},{e:.002,lo:-.019,hi:.023,p:.865},{e:.003,lo:-.018,hi:.024,p:.793}],
+  },
+  economic:{
+    no:  [{e:-.003,lo:-.017,hi:.012,p:.715},{e:.000,lo:-.015,hi:.016,p:.987},{e:.011,lo:-.008,hi:.030,p:.241},{e:.000,lo:-.016,hi:.015,p:.984},{e:.005,lo:-.012,hi:.022,p:.544},{e:.000,lo:-.015,hi:.016,p:.994}],
+    ctrl:[{e:-.003,lo:-.018,hi:.012,p:.701},{e:.000,lo:-.016,hi:.016,p:.999},{e:.008,lo:-.010,hi:.027,p:.372},{e:-.001,lo:-.016,hi:.015,p:.905},{e:.005,lo:-.012,hi:.022,p:.581},{e:.000,lo:-.016,hi:.016,p:.996}],
+  },
+  humanitarian:{
+    no:  [{e:-.025,lo:-.057,hi:.008,p:.137},{e:-.016,lo:-.050,hi:.018,p:.347},{e:.000,lo:-.036,hi:.037,p:.984},{e:-.006,lo:-.042,hi:.029,p:.720},{e:.018,lo:-.020,hi:.056,p:.355},{e:-.014,lo:-.048,hi:.021,p:.432}],
+    ctrl:[{e:-.022,lo:-.054,hi:.011,p:.196},{e:-.016,lo:-.050,hi:.018,p:.347},{e:-.002,lo:-.038,hi:.034,p:.903},{e:-.005,lo:-.040,hi:.030,p:.766},{e:.019,lo:-.019,hi:.057,p:.320},{e:-.013,lo:-.048,hi:.021,p:.441}],
+  },
+};
+
+const POL = {
+  no:  [{c:'Kill (100s)',  e:-.651,lo:-1.078,hi:-.224,p:.003},{c:'Kill (10Ks)',   e:-.265,lo:-.775,hi:.245,p:.307},{c:'Sex viol (100s)',e:-.389,lo:-.760,hi:-.018,p:.040},{c:'Sex viol (10Ks)',e:-.195,lo:-.605,hi:.215,p:.350},{c:'Infra (100s)',  e:-.341,lo:-.741,hi:.060,p:.095},{c:'Infra (10Ks)',  e:-.063,lo:-.542,hi:.415,p:.795}],
+  ctrl:[{c:'Kill (100s)',  e:-.691,lo:-1.114,hi:-.268,p:.001},{c:'Kill (10Ks)',   e:-.276,lo:-.767,hi:.214,p:.269},{c:'Sex viol (100s)',e:-.339,lo:-.682,hi:.004,p:.053},{c:'Sex viol (10Ks)',e:-.202,lo:-.606,hi:.203,p:.327},{c:'Infra (100s)',  e:-.348,lo:-.733,hi:.037,p:.076},{c:'Infra (10Ks)',  e:-.059,lo:-.522,hi:.404,p:.802}],
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let mDV='genocide_binary', eDV='genocide_binary', eMod='no', pMod='no';
+let tips=[];
+
+// ── TOOLTIP ───────────────────────────────────────────────────────────────────
+const ttEl=document.getElementById('ttip');
+function showTip(ev,i){
+  const d=tips[i]; if(!d) return;
+  const sig=d.p<.05;
+  const pf=d.p<.001?d.p.toExponential(1):d.p.toFixed(3);
+  ttEl.innerHTML=`<div class="tt-t">${d.lbl}</div>Est: <b>${d.e.toFixed(3)}</b><br>[${d.lo.toFixed(3)}, ${d.hi.toFixed(3)}]<br><span class="${sig?'tt-s':'tt-n'}">p = ${pf}</span>`;
+  ttEl.style.display='block';
+  positionTip(ev);
+}
+function moveTip(ev){if(ttEl.style.display!=='none')positionTip(ev);}
+function hideTip(){ttEl.style.display='none';}
+function positionTip(ev){
+  ttEl.style.left=Math.min(ev.clientX+14,window.innerWidth-220)+'px';
+  ttEl.style.top=(ev.clientY-10)+'px';
+}
+document.addEventListener('mousemove',moveTip);
+
+// ── SAMPLE TABLE ──────────────────────────────────────────────────────────────
+function buildTable(){
+  const tb=document.getElementById('stbody');
+  const total=CONDS.reduce((s,c)=>s+c.n,0);
+  tb.innerHTML=CONDS.map((c,i)=>{
+    const col=TCOL[c.t]||TCOL[null];
+    const gb=MEANS.genocide_binary[i], sa=MEANS.support_action[i], gf=MEANS.genocide_fit[i];
+    return `<tr>
+      <td><span class="dot" style="background:${col}"></span>${c.label}</td>
+      <td style="color:var(--text2)">${c.t?c.t.charAt(0).toUpperCase()+c.t.slice(1):'—'}</td>
+      <td style="color:var(--text2)">${c.sev||'—'}</td>
+      <td style="text-align:right">${c.n}</td>
+      <td><div class="bar-row"><span style="min-width:38px">${(gb*100).toFixed(1)}%</span><div class="bar-tr"><div class="bar-f" style="width:${gb*100}%;background:${col}"></div></div></div></td>
+      <td>${gf.toFixed(2)}</td>
+      <td>${(sa*100).toFixed(1)}%</td>
+    </tr>`;
+  }).join('');
+}
+
+// ── SVG HELPERS ───────────────────────────────────────────────────────────────
+function svgW(el){return el.parentElement.clientWidth-28;}
+
+function hLine(x1,y1,x2,y2,col,w,dash=''){
+  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-dasharray="${dash}"/>`;
+}
+
+// ── MEANS CHART (horizontal bars) ────────────────────────────────────────────
+function renderMeans(){
+  const svg=document.getElementById('mchart');
+  const data=MEANS[mDV]; const meta=DMETA[mDV];
+  const W=svgW(svg), RH=32, n=CONDS.length;
+  const ml=130,mr=60,mt=8,mb=24;
+  const iW=W-ml-mr, iH=n*RH;
+  const [dMin,dMax]=meta.dom;
+  const xs=v=>((v-dMin)/(dMax-dMin))*iW;
+  const H=mt+iH+mb;
+  svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+
+  let s=`<g transform="translate(${ml},${mt})">`;
+  // x ticks
+  [0,.25,.5,.75,1].forEach(t=>{
+    const v=dMin+t*(dMax-dMin), x=xs(v);
+    s+=hLine(x,0,x,iH,'var(--border2)',.5);
+    s+=`<text x="${x}" y="${iH+14}" text-anchor="middle" fill="var(--text3)" font-size="10" font-variant-numeric="tabular-nums">${meta.fmt(v)}</text>`;
+  });
+  // zero line if in range
+  if(dMin<0&&dMax>0) s+=hLine(xs(0),0,xs(0),iH,'var(--border)',1,'3,2');
+
+  CONDS.forEach((c,i)=>{
+    const y=i*RH, cy=y+RH/2;
+    const v=data[i]; const col=TCOL[c.t]||TCOL[null];
+    const barW=Math.max(xs(v)-xs(dMin>0?dMin:0),2);
+    if(i%2===0) s+=`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`;
+    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${c.short}</text>`;
+    s+=`<rect x="${xs(Math.max(dMin,0))}" y="${cy-9}" width="${barW}" height="18" fill="${col}" opacity=".85" rx="2"/>`;
+    s+=`<text x="${xs(v)+5}" y="${cy+4}" fill="var(--text)" font-size="11" font-variant-numeric="tabular-nums" font-weight="500">${meta.fmt(v)}</text>`;
+  });
+  s+=`</g>`;svg.innerHTML=s;
+}
+
+// ── EFFECTS CHART (dot+whisker) ───────────────────────────────────────────────
+function renderEffects(){
+  const svg=document.getElementById('echart');
+  const data=EFF[eDV][eMod];
+  const W=svgW(svg), RH=36, n=data.length;
+  const ml=130,mr=54,mt=10,mb=28;
+  const iW=W-ml-mr, iH=n*RH;
+  const allv=data.flatMap(d=>[d.lo,d.hi,0]);
+  const xMin=Math.min(...allv), xMax=Math.max(...allv);
+  const pad=(xMax-xMin)*.08;
+  const dom=[xMin-pad,xMax+pad];
+  const xs=v=>((v-dom[0])/(dom[1]-dom[0]))*iW;
+  const H=mt+iH+mb;
+  svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  tips=[];
+
+  const CLBLS=['Kill (100s)','Kill (10Ks)','Sex viol (100s)','Sex viol (10Ks)','Infra (100s)','Infra (10Ks)'];
+
+  let s=`<g transform="translate(${ml},${mt})">`;
+  // zero line
+  s+=hLine(xs(0),0,xs(0),iH,'var(--border)',1,'4,3');
+  // x axis ticks
+  const xtks=5;
+  for(let i=0;i<=xtks;i++){
+    const v=dom[0]+i*(dom[1]-dom[0])/xtks, x=xs(v);
+    s+=`<text x="${x}" y="${iH+16}" text-anchor="middle" fill="var(--text3)" font-size="10" font-variant-numeric="tabular-nums">${v.toFixed(2)}</text>`;
+    s+=hLine(x,iH,x,iH+4,'var(--border)',1);
+  }
+
+  data.forEach((d,i)=>{
+    const y=i*RH, cy=y+RH/2;
+    const sig=d.p<.05;
+    const col=sig?'var(--sig)':'var(--null)';
+    const tipIdx=tips.length;
+    tips.push({lbl:CLBLS[i],e:d.e,lo:d.lo,hi:d.hi,p:d.p});
+
+    if(i%2===0) s+=`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`;
+    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="${sig?'var(--text)':'var(--text2)'}" font-size="12" font-weight="${sig?600:400}">${CLBLS[i]}</text>`;
+    // CI
+    s+=hLine(xs(d.lo),cy,xs(d.hi),cy,col,sig?2:1.5);
+    s+=hLine(xs(d.lo),cy-5,xs(d.lo),cy+5,col,1.5);
+    s+=hLine(xs(d.hi),cy-5,xs(d.hi),cy+5,col,1.5);
+    // dot
+    s+=`<circle cx="${xs(d.e)}" cy="${cy}" r="${sig?6:5}" fill="${col}" opacity="${sig?1:.55}" style="cursor:pointer" onmouseover="showTip(event,${tipIdx})" onmouseout="hideTip()"/>`;
+    if(sig){
+      const pf=d.p<.001?d.p.toExponential(1):d.p.toFixed(3);
+      s+=`<text x="${iW+6}" y="${cy+4}" fill="var(--sig)" font-size="10" font-variant-numeric="tabular-nums">${pf}</text>`;
+    }
+  });
+  s+=`<text x="${iW/2}" y="${iH+26}" text-anchor="middle" fill="var(--text3)" font-size="10">${DMETA[eDV].lbl} — effect vs. control</text>`;
+  s+=`</g>`;svg.innerHTML=s;
+}
+
+// ── POLARITY CHART ────────────────────────────────────────────────────────────
+function renderPolarity(){
+  const svg=document.getElementById('pchart');
+  const data=POL[pMod];
+  const W=svgW(svg), RH=38, n=data.length;
+  const ml=130,mr=54,mt=10,mb=28;
+  const iW=W-ml-mr, iH=n*RH;
+  const allv=data.flatMap(d=>[d.lo,d.hi,0]);
+  const xMin=Math.min(...allv), xMax=Math.max(...allv);
+  const pad=(xMax-xMin)*.08;
+  const dom=[xMin-pad,xMax+pad];
+  const xs=v=>((v-dom[0])/(dom[1]-dom[0]))*iW;
+  const H=mt+iH+mb;
+  svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  tips=[];
+
+  let s=`<g transform="translate(${ml},${mt})">`;
+  s+=hLine(xs(0),0,xs(0),iH,'var(--border)',1,'4,3');
+  const xtks=5;
+  for(let i=0;i<=xtks;i++){
+    const v=dom[0]+i*(dom[1]-dom[0])/xtks, x=xs(v);
+    s+=`<text x="${x}" y="${iH+16}" text-anchor="middle" fill="var(--text3)" font-size="10" font-variant-numeric="tabular-nums">${v.toFixed(1)}</text>`;
+    s+=hLine(x,iH,x,iH+4,'var(--border)',1);
+  }
+
+  data.forEach((d,i)=>{
+    const y=i*RH, cy=y+RH/2;
+    const sig=d.p<.05;
+    const col=sig?'var(--sig)':'var(--null)';
+    const tipIdx=tips.length;
+    tips.push({lbl:d.c,e:d.e,lo:d.lo,hi:d.hi,p:d.p});
+    if(i%2===0) s+=`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`;
+    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="${sig?'var(--text)':'var(--text2)'}" font-size="12" font-weight="${sig?600:400}">${d.c}</text>`;
+    s+=hLine(xs(d.lo),cy,xs(d.hi),cy,col,sig?2.5:1.5);
+    s+=hLine(xs(d.lo),cy-5,xs(d.lo),cy+5,col,1.5);
+    s+=hLine(xs(d.hi),cy-5,xs(d.hi),cy+5,col,1.5);
+    s+=`<circle cx="${xs(d.e)}" cy="${cy}" r="${sig?6:5}" fill="${col}" opacity="${sig?1:.55}" style="cursor:pointer" onmouseover="showTip(event,${tipIdx})" onmouseout="hideTip()"/>`;
+    if(sig){
+      const pf=d.p<.001?d.p.toExponential(1):d.p.toFixed(3);
+      s+=`<text x="${iW+6}" y="${cy+4}" fill="var(--sig)" font-size="10" font-variant-numeric="tabular-nums">${pf}</text>`;
+    }
+  });
+  s+=`<text x="${iW/2}" y="${iH+26}" text-anchor="middle" fill="var(--text3)" font-size="10">Effect on AFINN polarity vs. control</text>`;
+  s+=`</g>`;svg.innerHTML=s;
+}
+
+// ── CONTROLS ──────────────────────────────────────────────────────────────────
+function pillSwitch(btn,sel){
+  document.querySelectorAll(sel).forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+}
+function setMDV(v,btn){mDV=v;pillSwitch(btn,'#means .pill');renderMeans();}
+function setEDV(v,btn){eDV=v;pillSwitch(btn,'#effects .pill:not(.mpill)');renderEffects();}
+function setMod(v,btn){eMod=v;pillSwitch(btn,'#effects .mpill');renderEffects();}
+function setPMod(v,btn){pMod=v;pillSwitch(btn,'#polarity .mpill');renderPolarity();}
+
+// ── NAV ───────────────────────────────────────────────────────────────────────
+function navClick(btn){
+  document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const sec=document.getElementById(btn.dataset.sec);
+  if(sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
+}
+window.addEventListener('scroll',()=>{
+  const ids=['overview','sample','means','effects','polarity'];
+  const tabs=document.querySelectorAll('.ntab');
+  let cur=0;
+  ids.forEach((id,i)=>{
+    const el=document.getElementById(id);
+    if(el&&el.getBoundingClientRect().top<110) cur=i;
+  });
+  tabs.forEach((t,i)=>t.classList.toggle('on',i===cur));
+},{passive:true});
+
+// ── THEME ─────────────────────────────────────────────────────────────────────
+function toggleTheme(){
+  const r=document.documentElement;
+  r.setAttribute('data-theme',r.getAttribute('data-theme')==='dark'?'light':'dark');
+  renderAll();
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+function renderAll(){renderMeans();renderEffects();renderPolarity();}
+buildTable();
+renderAll();
+window.addEventListener('resize',renderAll);
+</script>
