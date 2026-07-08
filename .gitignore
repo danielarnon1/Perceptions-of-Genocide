@@ -1,0 +1,20 @@
+# Raw survey data — never commit respondent-level data
+Data/
+
+# IRB documents
+IRB/
+
+# Temp/lock files
+~$*
+*.tmp
+
+# Claude session files
+.claude/
+
+# Large PDFs (tracked separately if needed)
+*.pdf
+
+# R session artifacts
+.Rhistory
+.RData
+.Rproj.user/
