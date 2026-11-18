@@ -1,5 +1,9 @@
 # Raw survey data — never commit respondent-level data
 Data/
+*_client.csv
+*_client.dta
+*_client.rds
+*_client.sav
 
 # IRB documents
 IRB/

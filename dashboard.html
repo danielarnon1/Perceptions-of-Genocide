@@ -1,32 +1,53 @@
-<title>Genocide Perceptions — Experiment 2</title>
+<title>Genocide Perceptions — Survey Experiments</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <style>
 :root {
   --bg:#edf1f8;--surface:#fff;--surface2:#f2f5fb;--border:#cdd5e8;--border2:#e4e8f4;
   --text:#111828;--text2:#5a6a88;--text3:#9aaac4;
   --accent:#2e7ab4;--sig:#c05020;--sig-bg:rgba(192,80,32,.08);
   --null:#8a9ab8;--kill:#c96050;--sex:#c98020;--infra:#2e7ab4;--ctrl:#7a8a9a;
+  --i1:#5b7fb0;--i2:#b08a3a;--i3:#a8452c;
+  --gz0:#6a7f9e;--gz1:#c97a1e;
+  --lk1:#3f6aa8;--lk2:#93b0d8;--lk3:#d3d9e3;--lk4:#eaab7e;--lk5:#c05020;
+  --em1:#e9edf3;--em2:#f3d3bb;--em3:#e7a576;--em4:#cf7140;--em5:#9e3f1c;
   --shadow:rgba(17,25,40,.08);
+  --r-dip:#5b7fb0;--r-eco:#8a6bb0;--r-hum:#3e9a7a;--r-leg:#b08a3a;--r-mil:#b0504a;--r-none:#a3acbb;
 }
-@media(prefers-color-scheme:dark){:root{
+@media(prefers-color-scheme:dark){:root:not([data-theme=light]){
   --bg:#0d1622;--surface:#152035;--surface2:#1a2840;--border:#243450;--border2:#1c2b42;
   --text:#d0daf0;--text2:#7a90b8;--text3:#4a6080;
   --accent:#5aaddc;--sig:#e07840;--sig-bg:rgba(224,120,64,.13);
   --null:#4a6080;--kill:#e07060;--sex:#e09830;--infra:#5aaddc;--ctrl:#6a8090;
+  --i1:#7d9fd0;--i2:#d0aa5a;--i3:#e0705a;
+  --gz0:#8aa2c8;--gz1:#e8a04a;
+  --lk1:#5d8fd6;--lk2:#3f5f8e;--lk3:#3a4558;--lk4:#a8643c;--lk5:#e8844a;
+  --em1:#26324a;--em2:#4f3a36;--em3:#7f4c32;--em4:#b56234;--em5:#ee8c4a;
   --shadow:rgba(0,0,0,.45);
+  --r-dip:#7d9fd0;--r-eco:#a98cd0;--r-hum:#5cbc9a;--r-leg:#d0aa5a;--r-mil:#d8746c;--r-none:#5a6a82;
 }}
 :root[data-theme=light]{
   --bg:#edf1f8;--surface:#fff;--surface2:#f2f5fb;--border:#cdd5e8;--border2:#e4e8f4;
   --text:#111828;--text2:#5a6a88;--text3:#9aaac4;
   --accent:#2e7ab4;--sig:#c05020;--sig-bg:rgba(192,80,32,.08);
   --null:#8a9ab8;--kill:#c96050;--sex:#c98020;--infra:#2e7ab4;--ctrl:#7a8a9a;
+  --i1:#5b7fb0;--i2:#b08a3a;--i3:#a8452c;
+  --gz0:#6a7f9e;--gz1:#c97a1e;
+  --lk1:#3f6aa8;--lk2:#93b0d8;--lk3:#d3d9e3;--lk4:#eaab7e;--lk5:#c05020;
+  --em1:#e9edf3;--em2:#f3d3bb;--em3:#e7a576;--em4:#cf7140;--em5:#9e3f1c;
   --shadow:rgba(17,25,40,.08);
+  --r-dip:#5b7fb0;--r-eco:#8a6bb0;--r-hum:#3e9a7a;--r-leg:#b08a3a;--r-mil:#b0504a;--r-none:#a3acbb;
 }
 :root[data-theme=dark]{
   --bg:#0d1622;--surface:#152035;--surface2:#1a2840;--border:#243450;--border2:#1c2b42;
   --text:#d0daf0;--text2:#7a90b8;--text3:#4a6080;
   --accent:#5aaddc;--sig:#e07840;--sig-bg:rgba(224,120,64,.13);
   --null:#4a6080;--kill:#e07060;--sex:#e09830;--infra:#5aaddc;--ctrl:#6a8090;
+  --i1:#7d9fd0;--i2:#d0aa5a;--i3:#e0705a;
+  --gz0:#8aa2c8;--gz1:#e8a04a;
+  --lk1:#5d8fd6;--lk2:#3f5f8e;--lk3:#3a4558;--lk4:#a8643c;--lk5:#e8844a;
+  --em1:#26324a;--em2:#4f3a36;--em3:#7f4c32;--em4:#b56234;--em5:#ee8c4a;
   --shadow:rgba(0,0,0,.45);
+  --r-dip:#7d9fd0;--r-eco:#a98cd0;--r-hum:#5cbc9a;--r-leg:#d0aa5a;--r-mil:#d8746c;--r-none:#5a6a82;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,sans-serif;font-size:14px;line-height:1.5}
@@ -34,14 +55,21 @@ body{background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,
 .hdr-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:12px}
 .hdr-title{font-family:Georgia,'Times New Roman',serif;font-size:17px;font-weight:normal;line-height:1.3}
 .hdr-sub{font-size:11px;color:var(--text2);font-style:italic;margin-top:2px}
-.thm-btn{background:var(--surface2);border:1px solid var(--border);border-radius:3px;color:var(--text2);cursor:pointer;font-size:11px;padding:4px 9px}
+.thm-btn{background:var(--surface2);border:1px solid var(--border);border-radius:3px;color:var(--text2);cursor:pointer;font-size:11px;padding:4px 9px;flex-shrink:0}
+.sw{display:inline-flex;border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-bottom:10px;max-width:100%}
+.sw button{background:var(--surface2);border:none;border-right:1px solid var(--border);color:var(--text2);cursor:pointer;font-size:12px;font-weight:500;padding:6px 14px;text-align:left;line-height:1.25}
+.sw button:last-child{border-right:none}
+.sw button small{display:block;font-size:10px;font-weight:400;color:var(--text3)}
+.sw button[aria-pressed=true]{background:var(--accent);color:#fff}
+.sw button[aria-pressed=true] small{color:rgba(255,255,255,.8)}
+.sw button:focus-visible,.ntab:focus-visible,.pill:focus-visible,.thm-btn:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .nav{display:flex;gap:0;overflow-x:auto;scrollbar-width:none}
 .nav::-webkit-scrollbar{display:none}
 .ntab{background:none;border:none;border-bottom:2px solid transparent;color:var(--text2);cursor:pointer;font-size:11px;font-weight:500;letter-spacing:.05em;padding:7px 14px;text-transform:uppercase;white-space:nowrap;transition:color .15s,border-color .15s}
 .ntab:hover{color:var(--text)}
 .ntab.on{border-bottom-color:var(--accent);color:var(--accent)}
-main{padding:20px;max-width:880px}
-section{margin-bottom:36px}
+main{padding:20px 20px 45vh;max-width:880px}
+section{margin-bottom:36px;scroll-margin-top:150px}
 .sh{font-family:Georgia,serif;font-size:15px;font-weight:normal;border-bottom:1px solid var(--border);padding-bottom:7px;margin-bottom:14px;text-wrap:balance}
 .stat-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin-bottom:16px}
 .stat{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:13px 15px}
@@ -49,6 +77,7 @@ section{margin-bottom:36px}
 .stat-v.a{color:var(--accent)}.stat-v.s{color:var(--sig)}
 .stat-l{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-top:4px}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:3px;padding:14px;overflow-x:auto}
+.card+.card{margin-top:10px}
 .ctrl-row{display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
 .clbl{font-size:10px;color:var(--text2);text-transform:uppercase;letter-spacing:.06em;margin-right:2px;flex-shrink:0}
 .pill{background:var(--surface2);border:1px solid var(--border);border-radius:2px;color:var(--text2);cursor:pointer;font-size:11px;font-weight:500;padding:3px 9px;transition:all .15s}
@@ -58,35 +87,53 @@ section{margin-bottom:36px}
 .lgd{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:10px}
 .li{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text2)}
 .ld{width:10px;height:10px;border-radius:50%;flex-shrink:0}
-.note{font-size:11px;color:var(--text2);font-style:italic;margin-top:10px;line-height:1.5}
-.ttip{position:fixed;background:var(--surface);border:1px solid var(--border);border-radius:3px;box-shadow:0 4px 16px var(--shadow);color:var(--text);font-size:12px;line-height:1.6;padding:8px 12px;pointer-events:none;z-index:999;display:none;max-width:210px}
+.lead{font-size:13px;line-height:1.55;color:var(--text);max-width:72ch;margin-bottom:12px;text-wrap:pretty}
+.lead b{font-weight:600}
+.note{font-size:11px;color:var(--text2);font-style:italic;margin-top:10px;line-height:1.5;max-width:72ch}
+.ttip{position:fixed;background:var(--surface);border:1px solid var(--border);border-radius:3px;box-shadow:0 4px 16px var(--shadow);color:var(--text);font-size:12px;line-height:1.6;padding:8px 12px;pointer-events:none;z-index:999;display:none;max-width:230px}
 .tt-t{font-weight:600;margin-bottom:2px}
 .tt-s{color:var(--sig)}.tt-n{color:var(--null)}
 .tbl{width:100%;border-collapse:collapse;font-size:12px;font-variant-numeric:tabular-nums}
-.tbl th{text-align:left;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:1px solid var(--border);padding:5px 8px}
+.tbl th{text-align:left;font-size:10px;font-weight:500;text-transform:uppercase;letter-spacing:.05em;color:var(--text2);border-bottom:1px solid var(--border);padding:5px 8px;vertical-align:bottom}
 .tbl td{padding:6px 8px;border-bottom:1px solid var(--border2);vertical-align:middle}
 .tbl tr:last-child td{border-bottom:none}
+.tbl .num{text-align:right}
+.tbl .sig{color:var(--sig);font-weight:600}
+.tbl .ci{color:var(--text3);font-size:11px}
 .dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:middle}
 .bar-row{display:flex;align-items:center;gap:6px}
-.bar-tr{flex:1;height:5px;background:var(--border2);border-radius:3px;overflow:hidden}
+.bar-tr{flex:1;height:5px;background:var(--border2);border-radius:3px;overflow:hidden;min-width:40px}
 .bar-f{height:100%;border-radius:3px}
 svg text{font-family:system-ui,sans-serif}
+@media(max-width:600px){
+  .hdr{padding:12px 16px 0}
+  main{padding:16px}
+  .sw button{padding:6px 10px;font-size:11px}
+  section{scroll-margin-top:170px}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
 </style>
 
 <div class="hdr">
   <div class="hdr-top">
     <div>
-      <div class="hdr-title">Genocide Perceptions — Experiment 2: Tactic × Severity</div>
-      <div class="hdr-sub">Van Nostrand, Schoner &amp; Arnon (2026) &nbsp;·&nbsp; N = 2,499 &nbsp;·&nbsp; OLS, HC2 robust SEs</div>
+      <div class="hdr-title">Genocide Perceptions — Survey Experiments</div>
+      <div class="hdr-sub" id="hsub"></div>
     </div>
-    <button class="thm-btn" onclick="toggleTheme()">☀ / ☾</button>
+    <button class="thm-btn" onclick="toggleTheme()" aria-label="Toggle light or dark theme">☀ / ☾</button>
+  </div>
+  <div class="sw" role="group" aria-label="Choose survey experiment">
+    <button data-sv="intent" onclick="setSurvey('intent')">Exp 1 · Intent<small>4 conditions · N = 1,300</small></button>
+    <button data-sv="tactic" onclick="setSurvey('tactic')">Exp 2 · Tactic × Severity<small>7 conditions · N = 2,499</small></button>
   </div>
   <div class="nav" id="nav">
     <button class="ntab on" data-sec="overview" onclick="navClick(this)">Overview</button>
     <button class="ntab" data-sec="sample" onclick="navClick(this)">Sample</button>
     <button class="ntab" data-sec="means" onclick="navClick(this)">Group means</button>
     <button class="ntab" data-sec="effects" onclick="navClick(this)">Treatment effects</button>
-    <button class="ntab" data-sec="polarity" onclick="navClick(this)">Sentiment</button>
+    <button class="ntab" data-sec="response" onclick="navClick(this)">Responses</button>
+    <button class="ntab" data-sec="attitudes" onclick="navClick(this)">Attitudes</button>
+    <button class="ntab" data-sec="gaza" onclick="navClick(this)">Gaza interaction</button>
   </div>
 </div>
 
@@ -95,26 +142,20 @@ svg text{font-family:system-ui,sans-serif}
 <main>
 
 <section id="overview">
-  <div class="sh">Study overview</div>
-  <div class="stat-row">
-    <div class="stat"><div class="stat-v">2,499</div><div class="stat-l">Respondents (post-exclusion)</div></div>
-    <div class="stat"><div class="stat-v a">7</div><div class="stat-l">Treatment conditions</div></div>
-    <div class="stat"><div class="stat-v">32.5%</div><div class="stat-l">Control genocide rate</div></div>
-    <div class="stat"><div class="stat-v s">70.3%</div><div class="stat-l">Peak rate (Infra, low)</div></div>
-    <div class="stat"><div class="stat-v">17.7%</div><div class="stat-l">Mentioned Gaza / Israel</div></div>
-    <div class="stat"><div class="stat-v">−2.05</div><div class="stat-l">Mean AFINN polarity</div></div>
-  </div>
-  <p class="note">3×2 factorial design crossing three atrocity tactics (killing, sexual violence, infrastructure destruction) with two severity levels (hundreds vs. tens of thousands) plus a no-tactic control. DVs: genocide classification (binary), genocide fit (1–7 scale), support for international action, and preferred response types.</p>
+  <div class="sh" id="ov-title">Study overview</div>
+  <div class="stat-row" id="ov-stats"></div>
+  <p class="note" id="ov-note"></p>
 </section>
 
 <section id="sample">
   <div class="sh">Sample by treatment condition</div>
   <div class="card">
     <table class="tbl">
-      <thead><tr><th>Condition</th><th>Tactic</th><th>Severity</th><th style="text-align:right">N</th><th>Genocide %</th><th>Fit (1–7)</th><th>Support action</th></tr></thead>
+      <thead><tr><th>Condition</th><th class="num">N</th><th>Genocide %</th><th class="num">Fit (1–5)</th><th class="num">Obligation</th></tr></thead>
       <tbody id="stbody"></tbody>
     </table>
   </div>
+  <p class="note" id="sample-note"></p>
 </section>
 
 <section id="means">
@@ -123,31 +164,32 @@ svg text{font-family:system-ui,sans-serif}
     <div class="ctrl-row">
       <span class="clbl">Outcome:</span>
       <button class="pill on" onclick="setMDV('genocide_binary',this)">Genocide (binary)</button>
-      <button class="pill" onclick="setMDV('genocide_fit',this)">Fit scale (1–7)</button>
-      <button class="pill" onclick="setMDV('support_action',this)">Support action</button>
+      <button class="pill" onclick="setMDV('genocide_fit',this)">Fit scale (1–5)</button>
+      <button class="pill" onclick="setMDV('support_action',this)">Obligation to respond</button>
     </div>
-    <div class="lgd">
-      <div class="li"><div class="ld" style="background:var(--ctrl)"></div>Control</div>
-      <div class="li"><div class="ld" style="background:var(--kill)"></div>Killing</div>
-      <div class="li"><div class="ld" style="background:var(--sex)"></div>Sexual violence</div>
-      <div class="li"><div class="ld" style="background:var(--infra)"></div>Infrastructure</div>
-    </div>
+    <div class="lgd" id="mlgd"></div>
     <svg id="mchart" width="100%" style="display:block"></svg>
   </div>
-  <p class="note">Raw group means. Tactic colors apply consistently across both severity levels.</p>
+  <p class="note">Raw group means.</p>
 </section>
 
 <section id="effects">
-  <div class="sh">Treatment effects vs. no-tactic control</div>
+  <div class="sh">Treatment effects vs. control</div>
   <div class="card">
     <div class="ctrl-row">
       <span class="clbl">Outcome:</span>
       <button class="pill on" onclick="setEDV('genocide_binary',this)">Genocide (binary)</button>
       <button class="pill" onclick="setEDV('genocide_fit',this)">Fit scale</button>
-      <button class="pill" onclick="setEDV('support_action',this)">Support action</button>
-      <button class="pill" onclick="setEDV('diplomatic',this)">Diplomatic</button>
-      <button class="pill" onclick="setEDV('economic',this)">Economic</button>
-      <button class="pill" onclick="setEDV('humanitarian',this)">Humanitarian</button>
+      <button class="pill" onclick="setEDV('support_action',this)">Obligation to respond</button>
+    </div>
+    <div class="ctrl-row" style="margin-top:-4px">
+      <span class="clbl" id="resp-pill-lbl"></span>
+      <button class="pill" onclick="setEDV('act_diplomatic',this)">Diplomatic</button>
+      <button class="pill" onclick="setEDV('act_economic',this)">Economic</button>
+      <button class="pill" onclick="setEDV('act_humanitarian',this)">Humanitarian</button>
+      <button class="pill" onclick="setEDV('act_legal',this)">Legal</button>
+      <button class="pill" onclick="setEDV('act_military',this)">Military</button>
+      <button class="pill" onclick="setEDV('act_none',this)">None</button>
     </div>
     <div class="ctrl-row" style="margin-top:-4px">
       <span class="clbl">Model:</span>
@@ -160,305 +202,480 @@ svg text{font-family:system-ui,sans-serif}
     </div>
     <svg id="echart" width="100%" style="display:block"></svg>
   </div>
-  <p class="note">OLS estimates with 95% CIs (HC2 robust SEs). Reference: no-tactic control. Hover dots for exact values. Filled circles = p &lt; .05.</p>
+  <p class="note" id="eff-note"></p>
 </section>
 
-<section id="polarity">
-  <div class="sh">Treatment effects on sentiment polarity (real_world_describe)</div>
+<section id="response">
+  <div class="sh" id="resp-title"></div>
   <div class="card">
-    <div class="ctrl-row">
-      <span class="clbl">Model:</span>
-      <button class="pill mpill on" onclick="setPMod('no',this)">No controls</button>
-      <button class="pill mpill" onclick="setPMod('ctrl',this)">With controls</button>
-    </div>
-    <svg id="pchart" width="100%" style="display:block"></svg>
+    <div class="lgd" id="rlgd"></div>
+    <svg id="rchart" width="100%" style="display:block"></svg>
   </div>
-  <p class="note">AFINN polarity (−5 to +5 per word, averaged per response). N=272 with scoreable text. Reference: no-tactic control.</p>
+  <p class="note" id="resp-note"></p>
+</section>
+
+<section id="attitudes">
+  <div class="sh">Views on the genocide label and reactions to the event</div>
+  <p class="lead" id="att-lead"></p>
+  <div class="card">
+    <div class="clbl" style="margin-bottom:8px">How much do you agree or disagree with the following statements?</div>
+    <div class="lgd" id="lk-lgd"></div>
+    <svg id="lkchart" width="100%" style="display:block"></svg>
+  </div>
+  <div class="card" id="therm-card">
+    <div class="clbl" style="margin-bottom:8px">Feeling thermometer: the people involved in the event you described (0 = cold, 100 = warm)</div>
+    <svg id="thchart" width="100%" style="display:block"></svg>
+  </div>
+  <div class="card" id="emo-card">
+    <div class="clbl" style="margin-bottom:8px">To what extent do you feel each of the following when thinking about this event?</div>
+    <div class="lgd" id="em-lgd"></div>
+    <svg id="emchart" width="100%" style="display:block"></svg>
+  </div>
+  <p class="note" id="att-note"></p>
+</section>
+
+<section id="gaza">
+  <div class="sh">Did thinking of Israel/Gaza change genocide classification?</div>
+  <div class="stat-row" id="gz-stats"></div>
+  <div class="card">
+    <div class="lgd">
+      <div class="li"><div class="ld" style="background:var(--gz0)"></div>Did not think of Israel/Gaza</div>
+      <div class="li"><div class="ld" style="background:var(--gz1)"></div>Thought of Israel/Gaza</div>
+    </div>
+    <svg id="gchart" width="100%" style="display:block"></svg>
+  </div>
+  <div class="card">
+    <table class="tbl">
+      <thead><tr><th>Treatment effect vs. control</th><th class="num">Did not think of Israel/Gaza</th><th class="num">Thought of Israel/Gaza</th><th class="num">Difference (interaction)</th></tr></thead>
+      <tbody id="gtbody"></tbody>
+    </table>
+  </div>
+  <p class="note" id="gz-note"></p>
 </section>
 
 </main>
 
 <script>
-// ── DATA ──────────────────────────────────────────────────────────────────────
-const CONDS = [
-  {key:'control',  label:'No tactic (control)',                short:'Control',         n:357, t:null,   sev:null},
-  {key:'kill_lo',  label:'Killing — hundreds',                 short:'Killing (100s)',  n:353, t:'kill',  sev:'Low'},
-  {key:'kill_hi',  label:'Killing — tens of thousands',        short:'Killing (10Ks)',  n:353, t:'kill',  sev:'High'},
-  {key:'sex_lo',   label:'Sexual violence — hundreds',         short:'Sex viol (100s)', n:355, t:'sex',   sev:'Low'},
-  {key:'sex_hi',   label:'Sexual violence — tens of thousands',short:'Sex viol (10Ks)', n:362, t:'sex',   sev:'High'},
-  {key:'infra_lo', label:'Infrastructure — hundreds',          short:'Infra (100s)',    n:364, t:'infra', sev:'Low'},
-  {key:'infra_hi', label:'Infrastructure — tens of thousands', short:'Infra (10Ks)',    n:355, t:'infra', sev:'High'},
+// ── DATA (generated by build_dashboard_data.R — do not edit by hand) ─────────
+// <<DATA
+const DATA = {"intent":{"n":[312,330,333,325],"means":{"genocide_binary":[0.413461538461538,0.466666666666667,0.444444444444444,0.646153846153846],"genocide_fit":[2.29807692307692,2.22121212121212,2.27927927927928,2.76307692307692],"support_action":[0.915384615384615,0.91304347826087,0.895131086142322,0.944852941176471],"act_diplomatic":[0.631410256410256,0.593939393939394,0.63963963963964,0.633846153846154],"act_economic":[0.605769230769231,0.554545454545455,0.528528528528528,0.603076923076923],"act_humanitarian":[0.772435897435897,0.766666666666667,0.750750750750751,0.769230769230769],"act_legal":[0.477564102564103,0.493939393939394,0.48048048048048,0.578461538461538],"act_military":[0.358974358974359,0.284848484848485,0.33033033033033,0.467692307692308],"act_none":[0.0448717948717949,0.0727272727272727,0.0720720720720721,0.0461538461538461]},"eff":{"genocide_binary":{"no":[{"e":0.0553027185729169,"lo":-0.0216033717622648,"hi":0.132208808908099,"p":0.158568210269489},{"e":0.0325629787133238,"lo":-0.0440150049028045,"hi":0.109140962329452,"p":0.404317598207514},{"e":0.232288890525624,"lo":0.156799060254549,"hi":0.307778720796699,"p":2.0519742191262e-09}],"ctrl":[{"e":0.0486666137008589,"lo":-0.0263691038732495,"hi":0.123702331274967,"p":0.203461168365706},{"e":0.0230107949485874,"lo":-0.0519741397431593,"hi":0.0979957296403342,"p":0.547258580398764},{"e":0.220513832498753,"lo":0.146036201948311,"hi":0.294991463049195,"p":7.96211693257466e-09}]},"genocide_fit":{"no":[{"e":-0.073679207564952,"lo":-0.251786065331587,"hi":0.104427650201683,"p":0.417195588252008},{"e":-0.0163979995388487,"lo":-0.203250911358507,"hi":0.17045491228081,"p":0.863334614382154},{"e":0.464387333463014,"lo":0.267973702963349,"hi":0.660800963962679,"p":3.86784498395902e-06}],"ctrl":[{"e":-0.0813113304874044,"lo":-0.253424326711711,"hi":0.0908016657369018,"p":0.354189883879389},{"e":-0.036494951923748,"lo":-0.218928808984772,"hi":0.145938905137276,"p":0.694786960559371},{"e":0.440236208525595,"lo":0.248411205428206,"hi":0.632061211622984,"p":7.3389908818192e-06}]},"support_action":{"no":[{"e":-0.00113753397326565,"lo":-0.0484611887138856,"hi":0.0461861207673543,"p":0.962390014410802},{"e":-0.0161275679699158,"lo":-0.065755732756572,"hi":0.0335005968167404,"p":0.523839943364783},{"e":0.0286756919290242,"lo":-0.0144146030195572,"hi":0.0717659868776056,"p":0.191903904842974}],"ctrl":[{"e":0.000978157542993685,"lo":-0.0456632759213018,"hi":0.0476195910072892,"p":0.967182663729524},{"e":-0.0210385219874162,"lo":-0.0715033021613913,"hi":0.0294262581865588,"p":0.413515499167631},{"e":0.0203621383273216,"lo":-0.0237228011619849,"hi":0.0644470778166281,"p":0.364970824841671}]},"act_diplomatic":{"no":[{"e":-0.0288771777350277,"lo":-0.103310391149648,"hi":0.0455560356795928,"p":0.446735444639268},{"e":0.0147028334861261,"lo":-0.0594547469347062,"hi":0.0888604139069584,"p":0.697373170369984},{"e":0.000783124806531744,"lo":-0.0736926593004634,"hi":0.0752589089135269,"p":0.983545091246947}],"ctrl":[{"e":-0.0205415162783141,"lo":-0.0906132703723618,"hi":0.0495302378157336,"p":0.565316592348474},{"e":0.0412534933942747,"lo":-0.0285460217121165,"hi":0.111053008500666,"p":0.246469361903297},{"e":0.00354406877643925,"lo":-0.0670836136748983,"hi":0.0741717512277768,"p":0.921594924126727}]},"act_economic":{"no":[{"e":-0.0439309424700647,"lo":-0.119857119640367,"hi":0.0319952347002376,"p":0.256544508847555},{"e":-0.071747156923815,"lo":-0.147820524953798,"hi":0.00432621110616762,"p":0.0645077412223994},{"e":-0.00409489533534617,"lo":-0.0793634109745084,"hi":0.071173620303816,"p":0.915020272441294}],"ctrl":[{"e":-0.0396381586250875,"lo":-0.113660992276489,"hi":0.0343846750263144,"p":0.293671262857347},{"e":-0.0521691836538183,"lo":-0.124870473198353,"hi":0.0205321058907162,"p":0.159440746468624},{"e":-0.0113646421556345,"lo":-0.0838860965553514,"hi":0.0611568122440823,"p":0.758562744292788}]},"act_humanitarian":{"no":[{"e":0.00386144523163583,"lo":-0.0604535549792742,"hi":0.0681764454425459,"p":0.906255893072738},{"e":-0.0144305517183973,"lo":-0.0794739471964858,"hi":0.0506128437596912,"p":0.663457038238313},{"e":-0.00505733923983687,"lo":-0.0697520995087738,"hi":0.0596374210291001,"p":0.878139654122279}],"ctrl":[{"e":-0.00186820137088289,"lo":-0.064461332168744,"hi":0.0607249294269782,"p":0.953316084530728},{"e":-0.0176566403942057,"lo":-0.0811370075883918,"hi":0.0458237267999803,"p":0.585386527186987},{"e":-0.0205490920717626,"lo":-0.0842331383473813,"hi":0.043134954203856,"p":0.526826580170579}]},"act_legal":{"no":[{"e":0.0228361527124024,"lo":-0.054143650802837,"hi":0.0998159562276417,"p":0.56068842916525},{"e":0.0077832151075424,"lo":-0.0689981622728128,"hi":0.0845645924878976,"p":0.842399935461007},{"e":0.0996548565955008,"lo":0.0225820164570454,"hi":0.176727696733956,"p":0.0113102335675961}],"ctrl":[{"e":0.0092467085764803,"lo":-0.0669099213806993,"hi":0.0854033385336599,"p":0.81176369079457},{"e":-0.00239807888626278,"lo":-0.0773669387982182,"hi":0.0725707810256926,"p":0.94997167872072},{"e":0.0895692276629391,"lo":0.0126497359215337,"hi":0.166488719404344,"p":0.0225087470819763}]},"act_military":{"no":[{"e":-0.0725609654424818,"lo":-0.145050761392347,"hi":-7.11694926166656e-05,"p":0.0497758286739529},{"e":-0.027465214336815,"lo":-0.101173178939718,"hi":0.046242750266088,"p":0.464905858729502},{"e":0.10841697907351,"lo":0.0322845196036923,"hi":0.184549438543327,"p":0.00528746400283321}],"ctrl":[{"e":-0.0711462721129109,"lo":-0.142850996993009,"hi":0.000558452767187315,"p":0.0518084142105599},{"e":-0.0285613103693454,"lo":-0.10228598297395,"hi":0.0451633622352593,"p":0.447379522353197},{"e":0.107754308937157,"lo":0.0320183340660878,"hi":0.183490283808226,"p":0.00532976033021755}]},"act_none":{"no":[{"e":0.0203555802985319,"lo":-0.0142915634219147,"hi":0.0550027240189784,"p":0.249296446197963},{"e":0.0215507548756905,"lo":-0.013453858728316,"hi":0.056555368479697,"p":0.227348624406962},{"e":0.0027244622834086,"lo":-0.0287527821608276,"hi":0.0342017067276448,"p":0.865193765647087}],"ctrl":[{"e":0.0202630644578492,"lo":-0.014833091770862,"hi":0.0553592206865604,"p":0.257560553512124},{"e":0.0160445258028765,"lo":-0.01905503547597,"hi":0.051144087081723,"p":0.370003075365271},{"e":0.00454314480346631,"lo":-0.0273082133859652,"hi":0.0363945029928978,"p":0.779654333350875}]}},"gaza":{"pred":{"no":[{"e":0.412323765793862,"lo":0.346847725889904,"hi":0.477799805697819,"n":218},{"e":0.435801461427358,"lo":0.371722428859033,"hi":0.499880493995682,"n":233},{"e":0.404602493782602,"lo":0.343251507346929,"hi":0.465953480218275,"n":248},{"e":0.604558204216013,"lo":0.541274022554746,"hi":0.667842385877281,"n":230}],"yes":[{"e":0.41428002906529,"lo":0.313997567152874,"hi":0.514562490977705,"n":94},{"e":0.543620226767412,"lo":0.443647586483417,"hi":0.643592867051407,"n":97},{"e":0.562599626025546,"lo":0.456129667030648,"hi":0.669069585020443,"n":85},{"e":0.744078107114162,"lo":0.655863078712091,"hi":0.832293135516233,"n":95}]},"eff":{"no":[{"e":0.0247955800150116,"lo":-0.0668608508241902,"hi":0.116452010854213,"p":0.595602153486497},{"e":-0.00684265158531721,"lo":-0.0965987016910725,"hi":0.082913398520438,"p":0.881100234802737},{"e":0.19257285555357,"lo":0.10154458806673,"hi":0.283601123040411,"p":3.60386380658278e-05}],"yes":[{"e":0.138479168448983,"lo":-0.00360374921508455,"hi":0.280562086113051,"p":0.0560685375699779},{"e":0.15464111940646,"lo":0.00855372914086777,"hi":0.300728509672051,"p":0.0380728207145181},{"e":0.341134141507253,"lo":0.206365891956752,"hi":0.475902391057754,"p":9.92924074461811e-07}],"diff":[{"e":0.105862502068626,"lo":-0.062891679299188,"hi":0.274616683436441,"p":0.218668958317011},{"e":0.156040868971516,"lo":-0.0155737428591773,"hi":0.327655480802209,"p":0.0746954188602313},{"e":0.137563639626721,"lo":-0.0240140897131963,"hi":0.299141368966638,"p":0.0951152651796433}]},"n":1300,"n_gaza":371,"share":0.285384615384615,"n_rw":712,"share_rw":0.521067415730337,"joint_p":0.267035104499407,"main_e":0.00195626327142811,"main_p":0.974441127712382},"att":{"likert":[{"k":"reserve","mean":3.57230769230769,"n":1300,"shares":[0.0584615384615385,0.177692307692308,0.168461538461538,0.323846153846154,0.271538461538462]},{"k":"commit","mean":4.05923076923077,"n":1300,"shares":[0.0261538461538461,0.0423076923076923,0.162307692307692,0.384615384615385,0.384615384615385]},{"k":"moral","mean":4.23461538461538,"n":1300,"shares":[0.0246153846153846,0.0269230769230769,0.134615384615385,0.316923076923077,0.496923076923077]},{"k":"symbolic","mean":3.20307692307692,"n":1300,"shares":[0.0815384615384615,0.174615384615385,0.319230769230769,0.308461538461538,0.116153846153846]},{"k":"avoid","mean":3.57692307692308,"n":1300,"shares":[0.0692307692307692,0.114615384615385,0.243846153846154,0.314615384615385,0.257692307692308]}],"emotions":[{"k":"anger","mean":3.47200622083981,"n":1286,"shares":[0.067651632970451,0.140746500777605,0.261275272161742,0.312597200622084,0.217729393468118]},{"k":"fear","mean":2.64942084942085,"n":1295,"shares":[0.254054054054054,0.213127413127413,0.26023166023166,0.174517374517375,0.0980694980694981]},{"k":"disgust","mean":3.85659213569776,"n":1297,"shares":[0.0632228218966847,0.0863531225905937,0.178103315343099,0.275250578257517,0.397070161912105]},{"k":"sadness","mean":3.80867544539117,"n":1291,"shares":[0.0565453137103021,0.101471727343145,0.179705654531371,0.301316808675445,0.360960495739737]},{"k":"contempt","mean":3.1337973704563,"n":1293,"shares":[0.167826759474091,0.135344160866203,0.279969064191802,0.22892498066512,0.187935034802784]}],"therm":[{"k":"therm_victims","mean":78.5834621329212,"median":87,"n":1294,"bins":[0.0193199381761978,0.0154559505409583,0.017774343122102,0.0193199381761978,0.0394126738794436,0.0965996908809892,0.0664605873261206,0.127511591962906,0.135239567233385,0.4629057187017]},{"k":"therm_perps","mean":30.2340777502068,"median":15,"n":1209,"bins":[0.37055417700579,0.166253101736973,0.065343258891646,0.065343258891646,0.0504549214226633,0.0984284532671629,0.0306038047973532,0.0306038047973532,0.0306038047973532,0.0918114143920596]}]}},"tactic":{"n":[357,355,364,353,353,362,355],"means":{"genocide_binary":[0.324929971988796,0.619718309859155,0.703296703296703,0.441926345609065,0.501416430594901,0.541436464088398,0.498591549295775],"genocide_fit":[1.97198879551821,2.77464788732394,2.94230769230769,2.23229461756374,2.44759206798867,2.56629834254144,2.38028169014085],"support_action":[0.925423728813559,0.954545454545455,0.942492012779553,0.949843260188088,0.968454258675079,0.916398713826366,0.914191419141914],"act_diplomatic":[0.207282913165266,0.16056338028169,0.118131868131868,0.1671388101983,0.113314447592068,0.113259668508287,0.132394366197183],"act_economic":[0.106442577030812,0.169014084507042,0.164835164835165,0.127478753541076,0.1671388101983,0.124309392265193,0.135211267605634],"act_humanitarian":[0.397759103641457,0.301408450704225,0.318681318681319,0.322946175637394,0.320113314447592,0.505524861878453,0.490140845070423],"act_legal":[0.0868347338935574,0.112676056338028,0.126373626373626,0.155807365439093,0.135977337110482,0.0856353591160221,0.0901408450704225],"act_military":[0.131652661064426,0.171830985915493,0.217032967032967,0.161473087818697,0.198300283286119,0.102209944751381,0.0929577464788732],"act_none":[0.0700280112044818,0.0845070422535211,0.0549450549450549,0.0651558073654391,0.0651558073654391,0.069060773480663,0.0591549295774648]},"eff":{"genocide_binary":{"no":[{"e":0.294788337870359,"lo":0.224580944022067,"hi":0.364995731718652,"p":2.89709351822151e-16},{"e":0.378366731307911,"lo":0.310693725946976,"hi":0.446039736668846,"p":2.38223825452631e-27},{"e":0.11699637362027,"lo":0.0458391725658557,"hi":0.188153574674685,"p":0.00127988216678275},{"e":0.176486458606106,"lo":0.105071008256614,"hi":0.247901908955599,"p":1.33749481286495e-06},{"e":0.216506492099604,"lo":0.145698193586803,"hi":0.287314790612405,"p":2.3189348033914e-09},{"e":0.173661577306979,"lo":0.102354230146666,"hi":0.244968924467291,"p":1.8955139999262e-06}],"ctrl":[{"e":0.296022204404669,"lo":0.226753638859385,"hi":0.365290769949953,"p":8.82419231657078e-17},{"e":0.383304803012808,"lo":0.31695585182933,"hi":0.449653754196286,"p":5.00631527326534e-29},{"e":0.114972295041622,"lo":0.0448521537184647,"hi":0.18509243636478,"p":0.00132041087132204},{"e":0.180616284377861,"lo":0.110408437412097,"hi":0.250824131343624,"p":4.87827191954584e-07},{"e":0.219536914770388,"lo":0.149152058272049,"hi":0.289921771268726,"p":1.11258988251515e-09},{"e":0.1807292004516,"lo":0.110572559885395,"hi":0.250885841017804,"p":4.70854589247488e-07}]},"genocide_fit":{"no":[{"e":0.80265909180574,"lo":0.623714651761148,"hi":0.981603531850332,"p":2.59865395575498e-18},{"e":0.970318896789495,"lo":0.792886766634856,"hi":1.14775102694413,"p":2.92162513123809e-26},{"e":0.260305822045536,"lo":0.0829579321329502,"hi":0.437653711958123,"p":0.00403391662256091},{"e":0.475603272470466,"lo":0.289209358997213,"hi":0.661997185943719,"p":6.02289614491321e-07},{"e":0.594309547023237,"lo":0.420418087894401,"hi":0.768201006152073,"p":2.53621107660412e-11},{"e":0.408292894622639,"lo":0.235110349538369,"hi":0.58147543970691,"p":3.97468276086579e-06}],"ctrl":[{"e":0.815526514320263,"lo":0.639536889930821,"hi":0.991516138709706,"p":2.05909942007564e-19},{"e":0.99078942226168,"lo":0.821014148561943,"hi":1.16056469596142,"p":1.42660710145166e-29},{"e":0.25407717132852,"lo":0.0807155154672092,"hi":0.427438827189831,"p":0.00408915112135072},{"e":0.496929259107375,"lo":0.313635498216941,"hi":0.680223019997809,"p":1.15549318995031e-07},{"e":0.632426552282031,"lo":0.46418067842243,"hi":0.800672426141633,"p":2.30921007725273e-13},{"e":0.441105447186805,"lo":0.274101649853555,"hi":0.608109244520055,"p":2.40879923140857e-07}]},"support_action":{"no":[{"e":0.0291217257318962,"lo":-0.0094563478516276,"hi":0.0676997993154199,"p":0.138921547531823},{"e":0.0170682839659944,"lo":-0.0225660148894456,"hi":0.0567025828214343,"p":0.398470300174744},{"e":0.0244195313745295,"lo":-0.0140374537407757,"hi":0.0628765164898348,"p":0.21317673298194},{"e":0.04303052986152,"lo":0.00732912064751867,"hi":0.0787319390755214,"p":0.0181843126380427},{"e":-0.00902501498719179,"lo":-0.0520740465190038,"hi":0.0340240165446202,"p":0.68101877402749},{"e":-0.0112323096716441,"lo":-0.0548412898303137,"hi":0.0323766704870256,"p":0.613532595951146}],"ctrl":[{"e":0.0278995775922586,"lo":-0.0111830946668284,"hi":0.0669822498513456,"p":0.161675796976307},{"e":0.0205383947447334,"lo":-0.0189825490382661,"hi":0.0600593385277328,"p":0.308248177557096},{"e":0.0277085111415297,"lo":-0.0102820111413606,"hi":0.06569903342442,"p":0.152770150903892},{"e":0.0427431960582429,"lo":0.00676708521802003,"hi":0.0787193068984658,"p":0.0199020107839113},{"e":-0.0103234369430651,"lo":-0.0534347295977706,"hi":0.0327878557116403,"p":0.638685439308669},{"e":-0.013414041508069,"lo":-0.057092058502798,"hi":0.03026397548666,"p":0.547054264733008}]},"act_diplomatic":{"no":[{"e":-0.046719532883576,"lo":-0.103630249109839,"hi":0.010191183342687,"p":0.10757498514229},{"e":-0.089151045033399,"lo":-0.142801087597341,"hi":-0.0355010024694575,"p":0.00113514764006949},{"e":-0.0401441029669659,"lo":-0.097550012250386,"hi":0.0172618063164542,"p":0.170413028777831},{"e":-0.0939684655731982,"lo":-0.147562936213572,"hi":-0.0403739949328247,"p":0.000595379710809867},{"e":-0.0940232446569789,"lo":-0.147357594550213,"hi":-0.0406888947637443,"p":0.000555573817288088},{"e":-0.0748885469680826,"lo":-0.129865742884699,"hi":-0.019911351051466,"p":0.00760923767243178}],"ctrl":[{"e":-0.0407967835557762,"lo":-0.0963323632813803,"hi":0.0147387961698279,"p":0.149849274395687},{"e":-0.0793919056065609,"lo":-0.131907118680486,"hi":-0.0268766925326362,"p":0.00306098402639399},{"e":-0.034225778574182,"lo":-0.0909205375748228,"hi":0.0224689804264589,"p":0.236611607273782},{"e":-0.0826875699094878,"lo":-0.135615372745505,"hi":-0.0297597670734702,"p":0.00221150812710033},{"e":-0.0863155739224077,"lo":-0.138714371960232,"hi":-0.0339167758845837,"p":0.00125346039602527},{"e":-0.0792570637587987,"lo":-0.133557853756412,"hi":-0.0249562737611851,"p":0.00424346652798131}]},"act_economic":{"no":[{"e":0.0625715074762295,"lo":0.0120453933846552,"hi":0.113097621567804,"p":0.0152360354809679},{"e":0.058392587804353,"lo":0.0085370361751355,"hi":0.10824813943357,"p":0.021718770437851},{"e":0.0210361765102642,"lo":-0.0263173564056318,"hi":0.0683897094261601,"p":0.383777458591191},{"e":0.0606962331674878,"lo":0.0102189396642402,"hi":0.111173526670735,"p":0.018455683357787},{"e":0.0178668152343807,"lo":-0.0288964911889711,"hi":0.0646301216577326,"p":0.45380400948104},{"e":0.0287686905748211,"lo":-0.0191627216409336,"hi":0.0767001027905759,"p":0.239326855326001}],"ctrl":[{"e":0.0625024818454537,"lo":0.0111121038904996,"hi":0.113892859800408,"p":0.0171575576110625},{"e":0.0591088298631533,"lo":0.00879796269267486,"hi":0.109419697033632,"p":0.0213148490991161},{"e":0.0158212188001196,"lo":-0.031674107933873,"hi":0.0633165455341121,"p":0.513681845664625},{"e":0.0625871967946127,"lo":0.0116639375045455,"hi":0.11351045608468,"p":0.0160223471516449},{"e":0.015008539604635,"lo":-0.0320412090303476,"hi":0.0620582882396177,"p":0.531684238101302},{"e":0.02669700512486,"lo":-0.0223287168357943,"hi":0.0757227270855144,"p":0.28570211895447}]},"act_humanitarian":{"no":[{"e":-0.0963506529372312,"lo":-0.166168377488106,"hi":-0.0265329283863562,"p":0.00685370797053046},{"e":-0.0790777849601383,"lo":-0.148987155891338,"hi":-0.00916841402893867,"p":0.0266388811238682},{"e":-0.0748129280040634,"lo":-0.14535291434251,"hi":-0.00427294166561706,"p":0.0376552019961793},{"e":-0.0776457891938648,"lo":-0.148107437532599,"hi":-0.00718414085513041,"p":0.0308020955519139},{"e":0.107765758236998,"lo":0.0353094201618967,"hi":0.180222096312098,"p":0.00357134416414834},{"e":0.0923817414289652,"lo":0.0195679654902238,"hi":0.165195517367707,"p":0.012915141936982}],"ctrl":[{"e":-0.0956834582284668,"lo":-0.164070255043324,"hi":-0.02729666141361,"p":0.00612063394209616},{"e":-0.0794498357482113,"lo":-0.147606978610807,"hi":-0.0112926928856159,"p":0.0223492878224341},{"e":-0.0820446116801479,"lo":-0.150694253113284,"hi":-0.0133949702470118,"p":0.019180872346638},{"e":-0.0741281367617685,"lo":-0.143585302096788,"hi":-0.00467097142674879,"p":0.0364693081846901},{"e":0.11565688542115,"lo":0.0443645750203918,"hi":0.186949195821909,"p":0.00148508320117499},{"e":0.0892647030255435,"lo":0.018117369499326,"hi":0.160412036551761,"p":0.0139517849247944}]},"act_legal":{"no":[{"e":0.0258413224444715,"lo":-0.0182320825032251,"hi":0.069914727392168,"p":0.250363953357303},{"e":0.0395388924800701,"lo":-0.0054716643052449,"hi":0.0845494492653852,"p":0.0850959028263171},{"e":0.068972631545537,"lo":0.0210842551904904,"hi":0.116861007900584,"p":0.00477656782014095},{"e":0.0491426032169251,"lo":0.00288373492936545,"hi":0.0954014715044848,"p":0.0373385234426991},{"e":-0.00119937477753479,"lo":-0.0423150806162164,"hi":0.0399163310611468,"p":0.954389392871666},{"e":0.00330611117686583,"lo":-0.0384949686765158,"hi":0.0451071910302475,"p":0.876761452358167}],"ctrl":[{"e":0.0259431139454445,"lo":-0.0179219280192633,"hi":0.0698081559101524,"p":0.246260442591172},{"e":0.0417263397883837,"lo":-0.00334609023670685,"hi":0.0867987698134742,"p":0.0695911447875097},{"e":0.0759801986028204,"lo":0.0278488566207098,"hi":0.124111540584931,"p":0.00198693648047896},{"e":0.0430000473186852,"lo":-0.00276314711842862,"hi":0.0887632417557991,"p":0.0655178497811926},{"e":0.00236747828720994,"lo":-0.0389993781175448,"hi":0.0437343346919647,"p":0.910652525795474},{"e":0.00681784710373817,"lo":-0.0348994142725288,"hi":0.0485351084800052,"p":0.748634727005656}]},"act_military":{"no":[{"e":0.0401783248510674,"lo":-0.0125523200590422,"hi":0.092908969761177,"p":0.135268756992544},{"e":0.0853803059685413,"lo":0.0302911162224744,"hi":0.140469495714608,"p":0.00239721138344193},{"e":0.0298204267542713,"lo":-0.0222743729016614,"hi":0.0819152264102039,"p":0.261766599294726},{"e":0.0666476222216933,"lo":0.0121368175283851,"hi":0.121158426915002,"p":0.0165799375105621},{"e":-0.0294427163130446,"lo":-0.0764767420087178,"hi":0.0175913093826286,"p":0.219747159371816},{"e":-0.0386949145855525,"lo":-0.0850699347858353,"hi":0.00768010561473037,"p":0.101929950305723}],"ctrl":[{"e":0.0361077519521752,"lo":-0.0157347019043661,"hi":0.0879502058087165,"p":0.172135681905137},{"e":0.0794439783123607,"lo":0.0251226655539327,"hi":0.133765291070789,"p":0.0041684685233228},{"e":0.0276781768309169,"lo":-0.0236711490951703,"hi":0.0790275027570041,"p":0.290625141458902},{"e":0.0632129020426626,"lo":0.0081143102242025,"hi":0.118311493861123,"p":0.0245555008202909},{"e":-0.0363572286776334,"lo":-0.0825576504293058,"hi":0.00984319307403891,"p":0.122923533351444},{"e":-0.0296587600062357,"lo":-0.0753960174733767,"hi":0.0160784974609054,"p":0.203640155593513}]},"act_none":{"no":[{"e":0.0144790310490391,"lo":-0.024811770650666,"hi":0.0537698327487442,"p":0.469983528001791},{"e":-0.0150829562594272,"lo":-0.0504871336781802,"hi":0.0203212211593258,"p":0.403576328541629},{"e":-0.00487220383904296,"lo":-0.0418693548279135,"hi":0.0321249471498275,"p":0.796246348736923},{"e":-0.00487220383904267,"lo":-0.0418693548279132,"hi":0.0321249471498278,"p":0.796246348736935},{"e":-0.000967237723819007,"lo":-0.0382259551391847,"hi":0.0362914796915467,"p":0.959404931042131},{"e":-0.0108730816270169,"lo":-0.0470386806003444,"hi":0.0252925173463107,"p":0.555549994466341}],"ctrl":[{"e":0.0119268940411697,"lo":-0.0264858335967673,"hi":0.0503396216791066,"p":0.542674686827681},{"e":-0.0214374066091251,"lo":-0.0569387539327205,"hi":0.0140639407144703,"p":0.236485377563593},{"e":-0.00320920397952659,"lo":-0.0401777307331423,"hi":0.0337593227740891,"p":0.864845356215421},{"e":-0.0119844394847039,"lo":-0.0488083012107938,"hi":0.024839422241386,"p":0.523407222691203},{"e":-0.0103601007129537,"lo":-0.0469993671711579,"hi":0.0262791657452504,"p":0.579304928103399},{"e":-0.013863731489107,"lo":-0.0495962832294783,"hi":0.0218688202512643,"p":0.446839630693937}]}},"gaza":{"pred":{"no":[{"e":0.318936877076408,"lo":0.266171979925295,"hi":0.371701774227521,"n":301},{"e":0.610561056105606,"lo":0.555538540820582,"hi":0.66558357139063,"n":303},{"e":0.68858131487889,"lo":0.635073972829493,"hi":0.742088656928287,"n":289},{"e":0.457337883959041,"lo":0.400170069791289,"hi":0.514505698126793,"n":293},{"e":0.501718213058416,"lo":0.444143986434976,"hi":0.559292439681855,"n":291},{"e":0.533101045296164,"lo":0.475252442613076,"hi":0.590949647979252,"n":287},{"e":0.466666666666663,"lo":0.408616528696265,"hi":0.52471680463706,"n":285}],"yes":[{"e":0.357142857142855,"lo":0.230448711176815,"hi":0.483837003108895,"n":56},{"e":0.673076923076919,"lo":0.544272812505346,"hi":0.801881033648493,"n":52},{"e":0.759999999999998,"lo":0.662645455535952,"hi":0.857354544464044,"n":75},{"e":0.366666666666664,"lo":0.243643881672149,"hi":0.489689451661179,"n":60},{"e":0.499999999999998,"lo":0.374465019720566,"hi":0.625534980279431,"n":62},{"e":0.573333333333331,"lo":0.460589767743424,"hi":0.686076898923238,"n":75},{"e":0.628571428571425,"lo":0.514507034256746,"hi":0.742635822886104,"n":70}]},"eff":{"no":[{"e":0.291624179029199,"lo":0.215382192453465,"hi":0.367866165604933,"p":9.37349567917586e-14},{"e":0.369644437802479,"lo":0.294488837823859,"hi":0.444800037781099,"p":1.4676666497341e-21},{"e":0.13840100688263,"lo":0.0605962949339307,"hi":0.21620571883133,"p":0.000496023625312124},{"e":0.182781335982006,"lo":0.104677458631455,"hi":0.260885213332556,"p":4.7132015495145e-06},{"e":0.214164168219754,"lo":0.135857772470393,"hi":0.292470563969116,"p":9.08255711745714e-08},{"e":0.147729789590253,"lo":0.0692743612209889,"hi":0.226185217959518,"p":0.000227660967059848}],"yes":[{"e":0.315934065934066,"lo":0.134856638021878,"hi":0.497011493846255,"p":0.000662470654155623},{"e":0.402857142857144,"lo":0.242718502315067,"hi":0.56299578339922,"p":1.08716545158315e-06},{"e":0.00952380952380968,"lo":-0.167469352397736,"hi":0.186516971445355,"p":0.915826630023135},{"e":0.142857142857143,"lo":-0.0358991704153889,"hi":0.321613456129675,"p":0.116980101020506},{"e":0.216190476190476,"lo":0.0462135315198326,"hi":0.38616742086112,"p":0.0127915948692013},{"e":0.271428571428572,"lo":0.100568726868442,"hi":0.442288415988702,"p":0.0019130178461173}],"diff":[{"e":0.0243098869048662,"lo":-0.171785796581174,"hi":0.220405570390906,"p":0.807952496781891},{"e":0.0332127050546605,"lo":-0.143355933084805,"hi":0.209781343194126,"p":0.712270597711988},{"e":-0.128877197358824,"lo":-0.32184948966515,"hi":0.0640950949475014,"p":0.19045007352974},{"e":-0.0399241931248651,"lo":-0.234627464382635,"hi":0.154779078132905,"p":0.687652849914325},{"e":0.00202630797071975,"lo":-0.184770676501041,"hi":0.18882329244248,"p":0.983030897599812},{"e":0.123698781838315,"lo":-0.0639606052495393,"hi":0.311358168926169,"p":0.196279240340733}]},"n":2499,"n_gaza":450,"share":0.180072028811525,"n_rw":1013,"share_rw":0.444225074037512,"joint_p":0.254222183417774,"main_e":0.0382059800664474,"main_p":0.585193292376379},"att":{"likert":[{"k":"reserve","mean":3.50340136054422,"n":2499,"shares":[0.0416166466586635,0.159263705482193,0.237294917967187,0.377751100440176,0.184073629451781]},{"k":"commit","mean":4.05482192877151,"n":2499,"shares":[0.021608643457383,0.0376150460184074,0.190076030412165,0.365746298519408,0.384953981592637]},{"k":"moral","mean":4.26970788315326,"n":2499,"shares":[0.0132052821128451,0.0248099239695878,0.141656662665066,0.319727891156463,0.500600240096038]},{"k":"symbolic","mean":3.28371348539416,"n":2499,"shares":[0.0672268907563025,0.139655862344938,0.353341336534614,0.321728691476591,0.118047218887555]},{"k":"avoid","mean":3.64345738295318,"n":2499,"shares":[0.0584233693477391,0.0964385754301721,0.250100040016006,0.333333333333333,0.261704681872749]}],"emotions":[]}}};
+// DATA>>
+
+// ── PER-SURVEY TEXT AND DESIGN ───────────────────────────────────────────────
+const META = {
+  intent: {
+    sub: 'Experiment 1: Perpetrator intent · Van Nostrand, Schoner &amp; Arnon (2026) · N = 1,300 · OLS, HC2 robust SEs',
+    ovTitle: 'Experiment 1 — Perpetrator intent',
+    note: 'Four-arm design varying what the perpetrator government says about its intent: no statement (control), a denial of targeting any group, a denial plus a security justification, or an explicit statement of intent to destroy the group. Fielded by Verasight, Nov 4–12, 2026. The 85 respondents (6.5%) who failed the vignette-recall check are retained, and every model adjusts for that failure.',
+    conds: [
+      {label:'No intent statement (control)',            short:'Control',          col:'var(--ctrl)'},
+      {label:'Leaders deny targeting any group',          short:'Denial',           col:'var(--i1)'},
+      {label:'Denial + security justification',           short:'Denial + justify', col:'var(--i2)'},
+      {label:'Leaders state goal of destroying the group', short:'Stated intent',   col:'var(--i3)'},
+    ],
+    sampleNote: 'Obligation excludes “Not sure” responses (17%), matching Experiment 2.',
+    effNote: 'OLS estimates with 95% CIs (HC2 robust SEs); reference is the no-intent control. Both models adjust for vignette-recall failure; “With controls” adds ideology, party, education, news attention, age and gender. Response outcomes are 0/1 indicators for selecting each option in a select-all-that-apply question.',
+    respType: 'multi',
+    respPill: 'Should respond (select all):',
+    respTitle: 'Support for each response, by condition',
+    respNote: '“Should governments respond in any of the following ways? (Select all that apply.)” Each dot is the share selecting that option. Hover a dot for the exact share.',
+    attLead: '<b>The intent treatments had no detectable effect on any of these items.</b> None of the 36 treatment-by-item estimates (3 treatments × 12 items) reached p &lt; .05, with or without controls, and no subgroup differences survived correction for multiple testing. The figures below therefore show responses pooled across all four conditions.',
+    attNote: 'The thermometer and emotion questions ask about the real-world event respondents described, not the vignette, so item n varies slightly. Hover a segment for its exact share.',
+    gzNote: 'Predicted probabilities from OLS: genocide classification ~ condition × Gaza mention, adjusting for vignette-recall failure (HC2 robust SEs). “Thought of Israel/Gaza” = said yes to thinking about a real-world event and named Israel, Gaza, Hamas or Palestine.',
+  },
+  tactic: {
+    sub: 'Experiment 2: Tactic × Severity · Van Nostrand, Schoner &amp; Arnon (2026) · N = 2,499 · OLS, HC2 robust SEs',
+    ovTitle: 'Experiment 2 — Tactic × Severity',
+    note: '3×2 factorial design crossing three atrocity tactics (killing, sexual violence, infrastructure destruction) with two severity levels (hundreds vs. tens of thousands), plus a no-tactic control. Respondents failing the attention check are excluded.',
+    conds: [
+      {label:'No tactic (control)',                 short:'Control',         col:'var(--ctrl)'},
+      {label:'Killing — hundreds',                  short:'Killing (100s)',  col:'var(--kill)'},
+      {label:'Killing — tens of thousands',         short:'Killing (10Ks)',  col:'var(--kill)'},
+      {label:'Sexual violence — hundreds',          short:'Sex viol (100s)', col:'var(--sex)'},
+      {label:'Sexual violence — tens of thousands', short:'Sex viol (10Ks)', col:'var(--sex)'},
+      {label:'Infrastructure — hundreds',           short:'Infra (100s)',    col:'var(--infra)'},
+      {label:'Infrastructure — tens of thousands',  short:'Infra (10Ks)',    col:'var(--infra)'},
+    ],
+    legend: [{lbl:'Control',col:'var(--ctrl)'},{lbl:'Killing',col:'var(--kill)'},{lbl:'Sexual violence',col:'var(--sex)'},{lbl:'Infrastructure',col:'var(--infra)'}],
+    sampleNote: 'Obligation excludes “Not sure” responses.',
+    effNote: 'OLS estimates with 95% CIs (HC2 robust SEs); reference is the no-tactic control. “With controls” adds ideology, party, education, news attention, age and gender. Response outcomes are linear probability models on a 0/1 indicator for choosing that option as the single most-supported response.',
+    respType: 'single',
+    respPill: 'Most supported response:',
+    respTitle: 'Most supported response, by condition',
+    respNote: '“Which of the following responses do you most support? (Select one.)” Shares sum to 100% within each condition. Hover a segment for its exact share.',
+    attLead: '<b>The tactic and severity treatments had little effect on these items, with one exception.</b> Describing any specific tactic lowered agreement that “genocide” should be reserved for the very worst cases by about 0.2–0.3 points on the 1–5 scale (significant in 5 of 6 arms). Sexual violence also slightly raised agreement that calling something genocide should commit countries to act (+0.14 to +0.20) and, with demographic controls only, that countries have a moral obligation to intervene (+0.14 at tens of thousands). All other effects were close to zero, and no subgroup differences survived correction for multiple testing, so the figures below show responses pooled across all seven conditions.',
+    attNote: 'Thermometer and emotion items were asked only in Experiment 1. Hover a segment for its exact share.',
+    gzNote: 'Predicted probabilities from OLS: genocide classification ~ condition × Gaza mention (HC2 robust SEs). “Thought of Israel/Gaza” = said yes to thinking about a real-world event and named Israel, Gaza, Hamas or Palestine.',
+  },
+};
+
+const RESP = [
+  {k:'act_diplomatic',  lbl:'Diplomatic pressure',     short:'Diplomatic',   col:'var(--r-dip)'},
+  {k:'act_economic',    lbl:'Economic sanctions',      short:'Economic',     col:'var(--r-eco)'},
+  {k:'act_humanitarian',lbl:'Humanitarian assistance', short:'Humanitarian', col:'var(--r-hum)'},
+  {k:'act_legal',       lbl:'Legal accountability',    short:'Legal',        col:'var(--r-leg)'},
+  {k:'act_military',    lbl:'Military intervention',   short:'Military',     col:'var(--r-mil)'},
+  {k:'act_none',        lbl:'None of the above',       short:'None',         col:'var(--r-none)'},
 ];
 
-const TCOL = {null:'var(--ctrl)',kill:'var(--kill)',sex:'var(--sex)',infra:'var(--infra)'};
-
-const MEANS = {
-  genocide_binary:[0.325,0.501,0.442,0.499,0.541,0.703,0.620],
-  genocide_fit:   [1.972,2.448,2.232,2.380,2.566,2.942,2.775],
-  support_action: [0.925,0.968,0.950,0.914,0.916,0.942,0.955],
+const DLBL = {
+  genocide_binary:'Pr(classified as genocide)', genocide_fit:'Genocide fit (1–5 scale)',
+  support_action:'Pr(obligation to respond)',
+  act_diplomatic:'Diplomatic pressure', act_economic:'Economic sanctions', act_humanitarian:'Humanitarian assistance',
+  act_legal:'Legal accountability', act_military:'Military intervention', act_none:'None of the above',
 };
-
-const DMETA = {
-  genocide_binary:{lbl:'Pr(classified as genocide)',dom:[0,0.80],fmt:v=>(v*100).toFixed(1)+'%'},
-  genocide_fit:   {lbl:'Genocide fit (1–7 scale)',  dom:[1.5,3.2],fmt:v=>v.toFixed(2)},
-  support_action: {lbl:'Pr(support action)',        dom:[0.87,0.99],fmt:v=>(v*100).toFixed(1)+'%'},
-  diplomatic:     {lbl:'Preferred: Diplomatic',     dom:[-0.04,0.06],fmt:v=>v.toFixed(3)},
-  economic:       {lbl:'Preferred: Economic',       dom:[-0.03,0.02],fmt:v=>v.toFixed(3)},
-  humanitarian:   {lbl:'Preferred: Humanitarian',  dom:[-0.07,0.04],fmt:v=>v.toFixed(3)},
-};
-
-// Treatment effects [kill_lo, kill_hi, sex_lo, sex_hi, infra_lo, infra_hi]
-const EFF = {
-  genocide_binary:{
-    no:  [{e:.176,lo:.105,hi:.248,p:1.3e-6},{e:.117,lo:.046,hi:.188,p:1.3e-3},{e:.174,lo:.102,hi:.245,p:1.9e-6},{e:.217,lo:.146,hi:.287,p:2.3e-9},{e:.378,lo:.311,hi:.446,p:2.4e-27},{e:.295,lo:.225,hi:.365,p:2.9e-16}],
-    ctrl:[{e:.179,lo:.107,hi:.251,p:1.0e-6},{e:.116,lo:.045,hi:.188,p:1.5e-3},{e:.174,lo:.102,hi:.245,p:1.9e-6},{e:.218,lo:.147,hi:.289,p:2.2e-9},{e:.380,lo:.312,hi:.448,p:1.3e-27},{e:.294,lo:.224,hi:.365,p:4.1e-16}],
-  },
-  genocide_fit:{
-    no:  [{e:.476,lo:.289,hi:.662,p:6.0e-7},{e:.260,lo:.083,hi:.438,p:4.0e-3},{e:.408,lo:.235,hi:.581,p:4.0e-6},{e:.594,lo:.420,hi:.768,p:2.5e-11},{e:.970,lo:.793,hi:1.148,p:2.9e-26},{e:.803,lo:.624,hi:.982,p:2.6e-18}],
-    ctrl:[{e:.487,lo:.300,hi:.674,p:3.6e-7},{e:.248,lo:.071,hi:.425,p:6.0e-3},{e:.404,lo:.232,hi:.576,p:4.1e-6},{e:.612,lo:.438,hi:.786,p:7.1e-12},{e:.976,lo:.801,hi:1.151,p:4.1e-27},{e:.803,lo:.625,hi:.981,p:1.9e-18}],
-  },
-  support_action:{
-    no:  [{e:.043,lo:.007,hi:.079,p:.018},{e:.024,lo:-.014,hi:.063,p:.213},{e:-.011,lo:-.055,hi:.032,p:.614},{e:-.009,lo:-.052,hi:.034,p:.681},{e:.017,lo:-.023,hi:.057,p:.398},{e:.029,lo:-.009,hi:.068,p:.139}],
-    ctrl:[{e:.042,lo:.007,hi:.077,p:.018},{e:.025,lo:-.013,hi:.062,p:.202},{e:-.015,lo:-.058,hi:.028,p:.499},{e:-.010,lo:-.053,hi:.032,p:.632},{e:.017,lo:-.023,hi:.057,p:.408},{e:.026,lo:-.012,hi:.064,p:.184}],
-  },
-  diplomatic:{
-    no:  [{e:.000,lo:-.020,hi:.021,p:.983},{e:-.008,lo:-.026,hi:.010,p:.372},{e:-.003,lo:-.022,hi:.017,p:.788},{e:.019,lo:-.006,hi:.044,p:.128},{e:.002,lo:-.018,hi:.023,p:.824},{e:.003,lo:-.018,hi:.024,p:.786}],
-    ctrl:[{e:.000,lo:-.021,hi:.020,p:.962},{e:-.009,lo:-.027,hi:.010,p:.358},{e:-.006,lo:-.025,hi:.013,p:.541},{e:.018,lo:-.007,hi:.043,p:.153},{e:.002,lo:-.019,hi:.023,p:.865},{e:.003,lo:-.018,hi:.024,p:.793}],
-  },
-  economic:{
-    no:  [{e:-.003,lo:-.017,hi:.012,p:.715},{e:.000,lo:-.015,hi:.016,p:.987},{e:.011,lo:-.008,hi:.030,p:.241},{e:.000,lo:-.016,hi:.015,p:.984},{e:.005,lo:-.012,hi:.022,p:.544},{e:.000,lo:-.015,hi:.016,p:.994}],
-    ctrl:[{e:-.003,lo:-.018,hi:.012,p:.701},{e:.000,lo:-.016,hi:.016,p:.999},{e:.008,lo:-.010,hi:.027,p:.372},{e:-.001,lo:-.016,hi:.015,p:.905},{e:.005,lo:-.012,hi:.022,p:.581},{e:.000,lo:-.016,hi:.016,p:.996}],
-  },
-  humanitarian:{
-    no:  [{e:-.025,lo:-.057,hi:.008,p:.137},{e:-.016,lo:-.050,hi:.018,p:.347},{e:.000,lo:-.036,hi:.037,p:.984},{e:-.006,lo:-.042,hi:.029,p:.720},{e:.018,lo:-.020,hi:.056,p:.355},{e:-.014,lo:-.048,hi:.021,p:.432}],
-    ctrl:[{e:-.022,lo:-.054,hi:.011,p:.196},{e:-.016,lo:-.050,hi:.018,p:.347},{e:-.002,lo:-.038,hi:.034,p:.903},{e:-.005,lo:-.040,hi:.030,p:.766},{e:.019,lo:-.019,hi:.057,p:.320},{e:-.013,lo:-.048,hi:.021,p:.441}],
-  },
-};
-
-const POL = {
-  no:  [{c:'Kill (100s)',  e:-.651,lo:-1.078,hi:-.224,p:.003},{c:'Kill (10Ks)',   e:-.265,lo:-.775,hi:.245,p:.307},{c:'Sex viol (100s)',e:-.389,lo:-.760,hi:-.018,p:.040},{c:'Sex viol (10Ks)',e:-.195,lo:-.605,hi:.215,p:.350},{c:'Infra (100s)',  e:-.341,lo:-.741,hi:.060,p:.095},{c:'Infra (10Ks)',  e:-.063,lo:-.542,hi:.415,p:.795}],
-  ctrl:[{c:'Kill (100s)',  e:-.691,lo:-1.114,hi:-.268,p:.001},{c:'Kill (10Ks)',   e:-.276,lo:-.767,hi:.214,p:.269},{c:'Sex viol (100s)',e:-.339,lo:-.682,hi:.004,p:.053},{c:'Sex viol (10Ks)',e:-.202,lo:-.606,hi:.203,p:.327},{c:'Infra (100s)',  e:-.348,lo:-.733,hi:.037,p:.076},{c:'Infra (10Ks)',  e:-.059,lo:-.522,hi:.404,p:.802}],
-};
+const pct = v => (v*100).toFixed(1)+'%';
+const fmtP = p => p<.001 ? p.toExponential(1) : p.toFixed(3);
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
-let mDV='genocide_binary', eDV='genocide_binary', eMod='no', pMod='no';
-let tips=[];
+let SV = 'intent', mDV='genocide_binary', eDV='genocide_binary', eMod='no';
+let tips = [];
+const cur = () => ({...DATA[SV], ...META[SV]});
 
 // ── TOOLTIP ───────────────────────────────────────────────────────────────────
 const ttEl=document.getElementById('ttip');
 function showTip(ev,i){
-  const d=tips[i]; if(!d) return;
-  const sig=d.p<.05;
-  const pf=d.p<.001?d.p.toExponential(1):d.p.toFixed(3);
-  ttEl.innerHTML=`<div class="tt-t">${d.lbl}</div>Est: <b>${d.e.toFixed(3)}</b><br>[${d.lo.toFixed(3)}, ${d.hi.toFixed(3)}]<br><span class="${sig?'tt-s':'tt-n'}">p = ${pf}</span>`;
-  ttEl.style.display='block';
-  positionTip(ev);
+  const html=tips[i]; if(!html) return;
+  ttEl.innerHTML=html; ttEl.style.display='block'; positionTip(ev);
 }
-function moveTip(ev){if(ttEl.style.display!=='none')positionTip(ev);}
 function hideTip(){ttEl.style.display='none';}
 function positionTip(ev){
-  ttEl.style.left=Math.min(ev.clientX+14,window.innerWidth-220)+'px';
+  ttEl.style.left=Math.min(ev.clientX+14,window.innerWidth-240)+'px';
   ttEl.style.top=(ev.clientY-10)+'px';
 }
-document.addEventListener('mousemove',moveTip);
-
-// ── SAMPLE TABLE ──────────────────────────────────────────────────────────────
-function buildTable(){
-  const tb=document.getElementById('stbody');
-  const total=CONDS.reduce((s,c)=>s+c.n,0);
-  tb.innerHTML=CONDS.map((c,i)=>{
-    const col=TCOL[c.t]||TCOL[null];
-    const gb=MEANS.genocide_binary[i], sa=MEANS.support_action[i], gf=MEANS.genocide_fit[i];
-    return `<tr>
-      <td><span class="dot" style="background:${col}"></span>${c.label}</td>
-      <td style="color:var(--text2)">${c.t?c.t.charAt(0).toUpperCase()+c.t.slice(1):'—'}</td>
-      <td style="color:var(--text2)">${c.sev||'—'}</td>
-      <td style="text-align:right">${c.n}</td>
-      <td><div class="bar-row"><span style="min-width:38px">${(gb*100).toFixed(1)}%</span><div class="bar-tr"><div class="bar-f" style="width:${gb*100}%;background:${col}"></div></div></div></td>
-      <td>${gf.toFixed(2)}</td>
-      <td>${(sa*100).toFixed(1)}%</td>
-    </tr>`;
-  }).join('');
+document.addEventListener('mousemove',ev=>{if(ttEl.style.display!=='none')positionTip(ev);});
+function effTip(lbl,d){
+  return `<div class="tt-t">${lbl}</div>Est: <b>${d.e.toFixed(3)}</b><br>[${d.lo.toFixed(3)}, ${d.hi.toFixed(3)}]<br><span class="${d.p<.05?'tt-s':'tt-n'}">p = ${fmtP(d.p)}</span>`;
 }
 
 // ── SVG HELPERS ───────────────────────────────────────────────────────────────
-function svgW(el){return el.parentElement.clientWidth-28;}
+function svgW(el){return Math.max(el.parentElement.clientWidth-28,300);}
+function ln(x1,y1,x2,y2,col,w,dash=''){return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-dasharray="${dash}"/>`;}
+function band(i,y,RH,ml,W){return i%2===0?`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`:'';}
+function marginL(W){return W<480?96:130;}
 
-function hLine(x1,y1,x2,y2,col,w,dash=''){
-  return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${col}" stroke-width="${w}" stroke-dasharray="${dash}"/>`;
+// ── OVERVIEW + SAMPLE ─────────────────────────────────────────────────────────
+function renderOverview(){
+  const c=cur(), gb=c.means.genocide_binary;
+  const total=c.n.reduce((a,b)=>a+b,0);
+  let pk=1; for(let i=2;i<gb.length;i++) if(gb[i]>gb[pk]) pk=i;
+  document.getElementById('hsub').innerHTML=c.sub;
+  document.getElementById('ov-title').textContent=c.ovTitle;
+  document.getElementById('ov-note').textContent=c.note;
+  document.getElementById('ov-stats').innerHTML=[
+    [total.toLocaleString(),'Respondents',''],
+    [c.conds.length,'Conditions','a'],
+    [pct(gb[0]),'Control genocide rate',''],
+    [pct(gb[pk]),`Peak rate · ${c.conds[pk].short}`,'s'],
+    [pct(c.gaza.share),'Thought of Israel/Gaza',''],
+  ].map(([v,l,cl])=>`<div class="stat"><div class="stat-v ${cl}">${v}</div><div class="stat-l">${l}</div></div>`).join('');
+
+  document.getElementById('stbody').innerHTML=c.conds.map((k,i)=>{
+    const g=c.means.genocide_binary[i];
+    return `<tr>
+      <td><span class="dot" style="background:${k.col}"></span>${k.label}</td>
+      <td class="num">${c.n[i]}</td>
+      <td><div class="bar-row"><span style="min-width:42px">${pct(g)}</span><div class="bar-tr"><div class="bar-f" style="width:${g*100}%;background:${k.col}"></div></div></div></td>
+      <td class="num">${c.means.genocide_fit[i].toFixed(2)}</td>
+      <td class="num">${pct(c.means.support_action[i])}</td>
+    </tr>`;
+  }).join('');
+  document.getElementById('sample-note').textContent=c.sampleNote;
+
+  const lg=c.legend||c.conds.map(k=>({lbl:k.short,col:k.col}));
+  document.getElementById('mlgd').innerHTML=lg.map(l=>`<div class="li"><div class="ld" style="background:${l.col}"></div>${l.lbl}</div>`).join('');
+  document.getElementById('resp-pill-lbl').textContent=c.respPill;
+  document.getElementById('eff-note').textContent=c.effNote;
+  document.getElementById('resp-title').textContent=c.respTitle;
+  document.getElementById('resp-note').textContent=c.respNote;
+  document.getElementById('gz-note').textContent=c.gzNote;
 }
 
-// ── MEANS CHART (horizontal bars) ────────────────────────────────────────────
+// ── MEANS CHART ───────────────────────────────────────────────────────────────
 function renderMeans(){
-  const svg=document.getElementById('mchart');
-  const data=MEANS[mDV]; const meta=DMETA[mDV];
-  const W=svgW(svg), RH=32, n=CONDS.length;
-  const ml=130,mr=60,mt=8,mb=24;
-  const iW=W-ml-mr, iH=n*RH;
-  const [dMin,dMax]=meta.dom;
-  const xs=v=>((v-dMin)/(dMax-dMin))*iW;
-  const H=mt+iH+mb;
-  svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-
+  const c=cur(), svg=document.getElementById('mchart'), data=c.means[mDV];
+  const isFit=mDV==='genocide_fit';
+  const fmt=isFit?(v=>v.toFixed(2)):pct;
+  const dMin=isFit?1:0, dMax=isFit?5:1;
+  const W=svgW(svg), RH=32, n=c.conds.length, ml=marginL(W), mr=56, mt=8, mb=24;
+  const iW=W-ml-mr, iH=n*RH, xs=v=>((v-dMin)/(dMax-dMin))*iW, H=mt+iH+mb;
+  svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
   let s=`<g transform="translate(${ml},${mt})">`;
-  // x ticks
-  [0,.25,.5,.75,1].forEach(t=>{
-    const v=dMin+t*(dMax-dMin), x=xs(v);
-    s+=hLine(x,0,x,iH,'var(--border2)',.5);
-    s+=`<text x="${x}" y="${iH+14}" text-anchor="middle" fill="var(--text3)" font-size="10" font-variant-numeric="tabular-nums">${meta.fmt(v)}</text>`;
+  for(let t=0;t<=4;t++){
+    const v=dMin+t*(dMax-dMin)/4, x=xs(v);
+    s+=ln(x,0,x,iH,'var(--border2)',.5);
+    s+=`<text x="${x}" y="${iH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">${isFit?v:Math.round(v*100)+'%'}</text>`;
+  }
+  c.conds.forEach((k,i)=>{
+    const y=i*RH, cy=y+RH/2, v=data[i];
+    s+=band(i,y,RH,ml,W);
+    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${k.short}</text>`;
+    s+=`<rect x="0" y="${cy-9}" width="${Math.max(xs(v),2)}" height="18" fill="${k.col}" opacity=".85" rx="2"/>`;
+    s+=`<text x="${xs(v)+5}" y="${cy+4}" fill="var(--text)" font-size="11" font-variant-numeric="tabular-nums" font-weight="500">${fmt(v)}</text>`;
   });
-  // zero line if in range
-  if(dMin<0&&dMax>0) s+=hLine(xs(0),0,xs(0),iH,'var(--border)',1,'3,2');
-
-  CONDS.forEach((c,i)=>{
-    const y=i*RH, cy=y+RH/2;
-    const v=data[i]; const col=TCOL[c.t]||TCOL[null];
-    const barW=Math.max(xs(v)-xs(dMin>0?dMin:0),2);
-    if(i%2===0) s+=`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`;
-    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${c.short}</text>`;
-    s+=`<rect x="${xs(Math.max(dMin,0))}" y="${cy-9}" width="${barW}" height="18" fill="${col}" opacity=".85" rx="2"/>`;
-    s+=`<text x="${xs(v)+5}" y="${cy+4}" fill="var(--text)" font-size="11" font-variant-numeric="tabular-nums" font-weight="500">${meta.fmt(v)}</text>`;
-  });
-  s+=`</g>`;svg.innerHTML=s;
+  svg.innerHTML=s+'</g>';
 }
 
-// ── EFFECTS CHART (dot+whisker) ───────────────────────────────────────────────
+// ── EFFECTS CHART ─────────────────────────────────────────────────────────────
 function renderEffects(){
-  const svg=document.getElementById('echart');
-  const data=EFF[eDV][eMod];
-  const W=svgW(svg), RH=36, n=data.length;
-  const ml=130,mr=54,mt=10,mb=28;
+  const c=cur(), svg=document.getElementById('echart'), data=c.eff[eDV][eMod];
+  const labels=c.conds.slice(1).map(k=>k.short);
+  const W=svgW(svg), RH=36, n=data.length, ml=marginL(W), mr=54, mt=10, mb=30;
   const iW=W-ml-mr, iH=n*RH;
   const allv=data.flatMap(d=>[d.lo,d.hi,0]);
-  const xMin=Math.min(...allv), xMax=Math.max(...allv);
-  const pad=(xMax-xMin)*.08;
-  const dom=[xMin-pad,xMax+pad];
-  const xs=v=>((v-dom[0])/(dom[1]-dom[0]))*iW;
-  const H=mt+iH+mb;
-  svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  tips=[];
-
-  const CLBLS=['Kill (100s)','Kill (10Ks)','Sex viol (100s)','Sex viol (10Ks)','Infra (100s)','Infra (10Ks)'];
-
+  const lo=Math.min(...allv), hi=Math.max(...allv), pad=(hi-lo)*.08, dom=[lo-pad,hi+pad];
+  const xs=v=>((v-dom[0])/(dom[1]-dom[0]))*iW, H=mt+iH+mb;
+  svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
   let s=`<g transform="translate(${ml},${mt})">`;
-  // zero line
-  s+=hLine(xs(0),0,xs(0),iH,'var(--border)',1,'4,3');
-  // x axis ticks
-  const xtks=5;
-  for(let i=0;i<=xtks;i++){
-    const v=dom[0]+i*(dom[1]-dom[0])/xtks, x=xs(v);
-    s+=`<text x="${x}" y="${iH+16}" text-anchor="middle" fill="var(--text3)" font-size="10" font-variant-numeric="tabular-nums">${v.toFixed(2)}</text>`;
-    s+=hLine(x,iH,x,iH+4,'var(--border)',1);
+  s+=ln(xs(0),0,xs(0),iH,'var(--border)',1,'4,3');
+  for(let i=0;i<=5;i++){
+    const v=dom[0]+i*(dom[1]-dom[0])/5, x=xs(v);
+    s+=`<text x="${x}" y="${iH+16}" text-anchor="middle" fill="var(--text3)" font-size="10">${v.toFixed(2)}</text>`;
+    s+=ln(x,iH,x,iH+4,'var(--border)',1);
   }
-
   data.forEach((d,i)=>{
-    const y=i*RH, cy=y+RH/2;
-    const sig=d.p<.05;
-    const col=sig?'var(--sig)':'var(--null)';
-    const tipIdx=tips.length;
-    tips.push({lbl:CLBLS[i],e:d.e,lo:d.lo,hi:d.hi,p:d.p});
-
-    if(i%2===0) s+=`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`;
-    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="${sig?'var(--text)':'var(--text2)'}" font-size="12" font-weight="${sig?600:400}">${CLBLS[i]}</text>`;
-    // CI
-    s+=hLine(xs(d.lo),cy,xs(d.hi),cy,col,sig?2:1.5);
-    s+=hLine(xs(d.lo),cy-5,xs(d.lo),cy+5,col,1.5);
-    s+=hLine(xs(d.hi),cy-5,xs(d.hi),cy+5,col,1.5);
-    // dot
-    s+=`<circle cx="${xs(d.e)}" cy="${cy}" r="${sig?6:5}" fill="${col}" opacity="${sig?1:.55}" style="cursor:pointer" onmouseover="showTip(event,${tipIdx})" onmouseout="hideTip()"/>`;
-    if(sig){
-      const pf=d.p<.001?d.p.toExponential(1):d.p.toFixed(3);
-      s+=`<text x="${iW+6}" y="${cy+4}" fill="var(--sig)" font-size="10" font-variant-numeric="tabular-nums">${pf}</text>`;
-    }
+    const y=i*RH, cy=y+RH/2, sig=d.p<.05, col=sig?'var(--sig)':'var(--null)';
+    tips[i]=effTip(labels[i],d);
+    s+=band(i,y,RH,ml,W);
+    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="${sig?'var(--text)':'var(--text2)'}" font-size="12" font-weight="${sig?600:400}">${labels[i]}</text>`;
+    s+=ln(xs(d.lo),cy,xs(d.hi),cy,col,sig?2:1.5)+ln(xs(d.lo),cy-5,xs(d.lo),cy+5,col,1.5)+ln(xs(d.hi),cy-5,xs(d.hi),cy+5,col,1.5);
+    s+=`<circle cx="${xs(d.e)}" cy="${cy}" r="${sig?6:5}" fill="${col}" opacity="${sig?1:.55}" style="cursor:pointer" onmouseover="showTip(event,${i})" onmouseout="hideTip()"/>`;
+    if(sig) s+=`<text x="${iW+6}" y="${cy+4}" fill="var(--sig)" font-size="10" font-variant-numeric="tabular-nums">${fmtP(d.p)}</text>`;
   });
-  s+=`<text x="${iW/2}" y="${iH+26}" text-anchor="middle" fill="var(--text3)" font-size="10">${DMETA[eDV].lbl} — effect vs. control</text>`;
-  s+=`</g>`;svg.innerHTML=s;
+  s+=`<text x="${iW/2}" y="${iH+28}" text-anchor="middle" fill="var(--text3)" font-size="10">${DLBL[eDV]} — effect vs. control</text>`;
+  svg.innerHTML=s+'</g>';
 }
 
-// ── POLARITY CHART ────────────────────────────────────────────────────────────
-function renderPolarity(){
-  const svg=document.getElementById('pchart');
-  const data=POL[pMod];
-  const W=svgW(svg), RH=38, n=data.length;
-  const ml=130,mr=54,mt=10,mb=28;
-  const iW=W-ml-mr, iH=n*RH;
-  const allv=data.flatMap(d=>[d.lo,d.hi,0]);
-  const xMin=Math.min(...allv), xMax=Math.max(...allv);
-  const pad=(xMax-xMin)*.08;
-  const dom=[xMin-pad,xMax+pad];
-  const xs=v=>((v-dom[0])/(dom[1]-dom[0]))*iW;
-  const H=mt+iH+mb;
-  svg.setAttribute('height',H);svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
-  tips=[];
+// ── RESPONSES ─────────────────────────────────────────────────────────────────
+function renderResp(){
+  const c=cur(), svg=document.getElementById('rchart'), W=svgW(svg), ml=marginL(W);
+  if(c.respType==='single'){
+    document.getElementById('rlgd').innerHTML=RESP.map(r=>`<div class="li"><div class="ld" style="background:${r.col}"></div>${r.lbl}</div>`).join('');
+    const RH=32, n=c.conds.length, mr=8, mt=6, mb=24, iW=W-ml-mr, iH=n*RH, H=mt+iH+mb;
+    svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    let s=`<g transform="translate(${ml},${mt})">`, idx=100;
+    [0,.25,.5,.75,1].forEach(t=>{s+=`<text x="${t*iW}" y="${iH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">${t*100}%</text>`;});
+    c.conds.forEach((k,i)=>{
+      const cy=i*RH+RH/2, tot=RESP.reduce((a,r)=>a+c.means[r.k][i],0);
+      s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${k.short}</text>`;
+      let x=0;
+      RESP.forEach(r=>{
+        const v=c.means[r.k][i]/tot, w=v*iW;
+        tips[idx]=`<div class="tt-t">${k.short}</div>${r.lbl}: <b>${pct(v)}</b>`;
+        s+=`<rect x="${x}" y="${cy-10}" width="${Math.max(w-1,0)}" height="20" fill="${r.col}" style="cursor:pointer" onmouseover="showTip(event,${idx})" onmouseout="hideTip()"/>`;
+        if(w>30) s+=`<text x="${x+w/2}" y="${cy+4}" text-anchor="middle" fill="#fff" font-size="10" pointer-events="none">${Math.round(v*100)}</text>`;
+        x+=w; idx++;
+      });
+    });
+    svg.innerHTML=s+'</g>';
+  } else {
+    document.getElementById('rlgd').innerHTML=c.conds.map(k=>`<div class="li"><div class="ld" style="background:${k.col}"></div>${k.short}</div>`).join('');
+    const RH=34, n=RESP.length, mr=16, mt=6, mb=24, iW=W-ml-mr, iH=n*RH, H=mt+iH+mb, xs=v=>v*iW;
+    svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    let s=`<g transform="translate(${ml},${mt})">`, idx=100;
+    [0,.25,.5,.75,1].forEach(t=>{
+      s+=ln(xs(t),0,xs(t),iH,'var(--border2)',.5);
+      s+=`<text x="${xs(t)}" y="${iH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">${t*100}%</text>`;
+    });
+    RESP.forEach((r,i)=>{
+      const y=i*RH, cy=y+RH/2, vals=c.means[r.k];
+      s+=band(i,y,RH,ml,W);
+      s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${r.short}</text>`;
+      s+=ln(xs(Math.min(...vals)),cy,xs(Math.max(...vals)),cy,'var(--text3)',1.5);
+      c.conds.forEach((k,j)=>{
+        tips[idx]=`<div class="tt-t">${r.lbl}</div>${k.short}: <b>${pct(vals[j])}</b>`;
+        s+=`<circle cx="${xs(vals[j])}" cy="${cy}" r="6" fill="${k.col}" stroke="var(--surface)" stroke-width="1.5" style="cursor:pointer" onmouseover="showTip(event,${idx})" onmouseout="hideTip()"/>`;
+        idx++;
+      });
+    });
+    svg.innerHTML=s+'</g>';
+  }
+}
 
-  let s=`<g transform="translate(${ml},${mt})">`;
-  s+=hLine(xs(0),0,xs(0),iH,'var(--border)',1,'4,3');
-  const xtks=5;
-  for(let i=0;i<=xtks;i++){
-    const v=dom[0]+i*(dom[1]-dom[0])/xtks, x=xs(v);
-    s+=`<text x="${x}" y="${iH+16}" text-anchor="middle" fill="var(--text3)" font-size="10" font-variant-numeric="tabular-nums">${v.toFixed(1)}</text>`;
-    s+=hLine(x,iH,x,iH+4,'var(--border)',1);
+// ── ATTITUDES (pooled descriptives) ───────────────────────────────────────────
+const ATT_LBL = {
+  reserve:'“Genocide” should be reserved for the very worst cases',
+  commit:'Calling a situation “genocide” should commit countries to stronger action',
+  moral:'Countries have a moral obligation to intervene when genocide occurs',
+  symbolic:'“Genocide” is often used symbolically rather than to prompt action',
+  avoid:'Governments should avoid the term unless prepared to act',
+  anger:'Anger', fear:'Fear', disgust:'Disgust', sadness:'Sadness', contempt:'Contempt',
+  therm_victims:'Victims (people affected)', therm_perps:'Perpetrators (people responsible)',
+};
+const LK_LVL = ['Strongly disagree','Disagree','Neither','Agree','Strongly agree'];
+const EM_LVL = ['Not at all','A little bit','Moderately','Quite a bit','Extremely'];
+const legendHTML = (lv,pre) => lv.map((l,i)=>`<div class="li"><div class="ld" style="background:var(--${pre}${i+1});border-radius:2px"></div>${l}</div>`).join('');
+
+function renderAttitudes(){
+  const c=cur(), a=c.att;
+  document.getElementById('att-note').textContent=c.attNote;
+  document.getElementById('att-lead').innerHTML=c.attLead;
+  document.getElementById('lk-lgd').innerHTML=legendHTML(LK_LVL,'lk');
+
+  // Diverging stacked bars centred on "Neither"
+  {
+    const svg=document.getElementById('lkchart'), W=svgW(svg), mt=4, mb=20, n=a.likert.length;
+    const narrow=W<600, maxCh=Math.floor(W/6.6);
+    const wrap=str=>{const out=[];let line='';str.split(' ').forEach(w=>{if((line+' '+w).trim().length>maxCh){out.push(line);line=w;}else line=(line+' '+w).trim();});out.push(line);return out;};
+    const rows=a.likert.map(r=>({r,lines:narrow?wrap(ATT_LBL[r.k]):[ATT_LBL[r.k]]}));
+    rows.forEach(o=>{o.h=o.lines.length*15+(narrow?15:0)+30;});
+    const left=r=>r.shares[0]+r.shares[1]+r.shares[2]/2, right=r=>r.shares[4]+r.shares[3]+r.shares[2]/2;
+    const mL=Math.max(...a.likert.map(left)), mR=Math.max(...a.likert.map(right));
+    const sc=W/(mL+mR), cx=mL*sc, totH=rows.reduce((t,o)=>t+o.h,0), H=mt+totH+mb;
+    svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    let s=`<g transform="translate(0,${mt})">`, idx=300, y=0;
+    rows.forEach(({r,lines,h})=>{
+      const agree=r.shares[3]+r.shares[4], dis=r.shares[0]+r.shares[1];
+      const summ=`${Math.round(agree*100)}% agree · mean ${r.mean.toFixed(2)}`;
+      lines.forEach((l,k)=>{s+=`<text x="0" y="${y+12+k*15}" fill="var(--text)" font-size="12">${l}</text>`;});
+      if(narrow) s+=`<text x="0" y="${y+12+lines.length*15}" fill="var(--text2)" font-size="11" font-variant-numeric="tabular-nums">${summ}</text>`;
+      else s+=`<text x="${W}" y="${y+12}" text-anchor="end" fill="var(--text2)" font-size="11" font-variant-numeric="tabular-nums">${summ}</text>`;
+      const by=y+h-28;
+      let x=cx-left(r)*sc;
+      r.shares.forEach((v,j)=>{
+        const w=v*sc;
+        tips[idx]=`<div class="tt-t">${ATT_LBL[r.k]}</div>${LK_LVL[j]}: <b>${pct(v)}</b><br>Disagree ${pct(dis)} · Agree ${pct(agree)}<br>n = ${r.n.toLocaleString()}`;
+        s+=`<rect x="${x}" y="${by}" width="${Math.max(w-1,0)}" height="20" fill="var(--lk${j+1})" style="cursor:pointer" onmouseover="showTip(event,${idx})" onmouseout="hideTip()"/>`;
+        if(w>28) s+=`<text x="${x+w/2}" y="${by+14}" text-anchor="middle" fill="${j===0||j===4?'#fff':'var(--text)'}" font-size="10" pointer-events="none">${Math.round(v*100)}</text>`;
+        x+=w; idx++;
+      });
+      y+=h;
+    });
+    s+=ln(cx,0,cx,totH,'var(--text3)',1,'3,3');
+    s+=`<text x="${cx}" y="${totH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">neutral</text>`;
+    svg.innerHTML=s+'</g>';
   }
 
-  data.forEach((d,i)=>{
-    const y=i*RH, cy=y+RH/2;
-    const sig=d.p<.05;
-    const col=sig?'var(--sig)':'var(--null)';
-    const tipIdx=tips.length;
-    tips.push({lbl:d.c,e:d.e,lo:d.lo,hi:d.hi,p:d.p});
-    if(i%2===0) s+=`<rect x="${-ml}" y="${y}" width="${W}" height="${RH}" fill="var(--border2)" opacity=".35"/>`;
-    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="${sig?'var(--text)':'var(--text2)'}" font-size="12" font-weight="${sig?600:400}">${d.c}</text>`;
-    s+=hLine(xs(d.lo),cy,xs(d.hi),cy,col,sig?2.5:1.5);
-    s+=hLine(xs(d.lo),cy-5,xs(d.lo),cy+5,col,1.5);
-    s+=hLine(xs(d.hi),cy-5,xs(d.hi),cy+5,col,1.5);
-    s+=`<circle cx="${xs(d.e)}" cy="${cy}" r="${sig?6:5}" fill="${col}" opacity="${sig?1:.55}" style="cursor:pointer" onmouseover="showTip(event,${tipIdx})" onmouseout="hideTip()"/>`;
-    if(sig){
-      const pf=d.p<.001?d.p.toExponential(1):d.p.toFixed(3);
-      s+=`<text x="${iW+6}" y="${cy+4}" fill="var(--sig)" font-size="10" font-variant-numeric="tabular-nums">${pf}</text>`;
-    }
+  // Thermometers
+  const thCard=document.getElementById('therm-card');
+  thCard.style.display=a.therm?'':'none';
+  if(a.therm){
+    const svg=document.getElementById('thchart'), W=svgW(svg), RH=96, mt=4, mb=22, n=a.therm.length;
+    const mx=Math.max(...a.therm.flatMap(t=>t.bins)), H=mt+n*RH+mb, bw=W/10;
+    svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    let s=`<g transform="translate(0,${mt})">`, idx=400;
+    a.therm.forEach((t,i)=>{
+      const y=i*RH, base=y+RH-14, hMax=RH-36, col=t.k==='therm_victims'?'var(--gz0)':'var(--gz1)';
+      s+=`<text x="0" y="${y+12}" fill="var(--text)" font-size="12">${ATT_LBL[t.k]}</text>`;
+      s+=`<text x="${W}" y="${y+12}" text-anchor="end" fill="var(--text2)" font-size="11" font-variant-numeric="tabular-nums">mean ${t.mean.toFixed(0)} · median ${t.median.toFixed(0)}</text>`;
+      t.bins.forEach((v,j)=>{
+        const h=v/mx*hMax;
+        tips[idx]=`<div class="tt-t">${ATT_LBL[t.k]}</div>${j*10}–${j===9?100:j*10+9}: <b>${pct(v)}</b><br>n = ${t.n.toLocaleString()}`;
+        s+=`<rect x="${j*bw+1}" y="${base-h}" width="${bw-2}" height="${Math.max(h,1)}" fill="${col}" opacity=".85" style="cursor:pointer" onmouseover="showTip(event,${idx})" onmouseout="hideTip()"/>`;
+        idx++;
+      });
+      const mx_=t.mean/100*W;
+      s+=ln(mx_,base-hMax-2,mx_,base,'var(--text)',1.5,'4,2');
+      s+=ln(0,base,W,base,'var(--border)',1);
+    });
+    [0,25,50,75,100].forEach(v=>s+=`<text x="${Math.min(Math.max(v/100*W,8),W-12)}" y="${n*RH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">${v}</text>`);
+    svg.innerHTML=s+'</g>';
+  }
+
+  // Emotions: 100% stacked, sorted by mean
+  const emCard=document.getElementById('emo-card');
+  emCard.style.display=a.emotions&&a.emotions.length?'':'none';
+  if(a.emotions&&a.emotions.length){
+    document.getElementById('em-lgd').innerHTML=legendHTML(EM_LVL,'em');
+    const svg=document.getElementById('emchart'), W=svgW(svg), ml=78, mr=64, RH=30, mt=4, mb=20;
+    const rows=[...a.emotions].sort((p,q)=>q.mean-p.mean), n=rows.length, iW=W-ml-mr, H=mt+n*RH+mb;
+    svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+    let s=`<g transform="translate(${ml},${mt})">`, idx=500;
+    [0,.25,.5,.75,1].forEach(t=>s+=`<text x="${t*iW}" y="${n*RH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">${t*100}%</text>`);
+    rows.forEach((r,i)=>{
+      const cy=i*RH+RH/2;
+      s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${ATT_LBL[r.k]}</text>`;
+      s+=`<text x="${iW+8}" y="${cy+4}" fill="var(--text2)" font-size="11" font-variant-numeric="tabular-nums">mean ${r.mean.toFixed(2)}</text>`;
+      let x=0;
+      r.shares.forEach((v,j)=>{
+        const w=v*iW;
+        tips[idx]=`<div class="tt-t">${ATT_LBL[r.k]}</div>${EM_LVL[j]}: <b>${pct(v)}</b><br>n = ${r.n.toLocaleString()}`;
+        s+=`<rect x="${x}" y="${cy-10}" width="${Math.max(w-1,0)}" height="20" fill="var(--em${j+1})" style="cursor:pointer" onmouseover="showTip(event,${idx})" onmouseout="hideTip()"/>`;
+        if(w>26) s+=`<text x="${x+w/2}" y="${cy+4}" text-anchor="middle" fill="${j>=3?'#fff':'var(--text)'}" font-size="10" pointer-events="none">${Math.round(v*100)}</text>`;
+        x+=w; idx++;
+      });
+    });
+    svg.innerHTML=s+'</g>';
+  }
+}
+
+// ── GAZA INTERACTION ──────────────────────────────────────────────────────────
+function renderGaza(){
+  const c=cur(), g=c.gaza, svg=document.getElementById('gchart');
+  document.getElementById('gz-stats').innerHTML=[
+    [g.n_gaza.toLocaleString(),'Thought of Israel/Gaza',''],
+    [pct(g.share),'Share of all respondents',''],
+    [pct(g.share_rw),'Share of those recalling an event','a'],
+    [g.joint_p.toFixed(2),'Joint interaction test (p)',g.joint_p<.05?'s':''],
+  ].map(([v,l,cl])=>`<div class="stat"><div class="stat-v ${cl}">${v}</div><div class="stat-l">${l}</div></div>`).join('');
+
+  const W=svgW(svg), RH=40, n=c.conds.length, ml=marginL(W), mr=16, mt=6, mb=30;
+  const iW=W-ml-mr, iH=n*RH, xs=v=>Math.max(0,Math.min(1,v))*iW, H=mt+iH+mb;
+  svg.setAttribute('height',H); svg.setAttribute('viewBox',`0 0 ${W} ${H}`);
+  let s=`<g transform="translate(${ml},${mt})">`, idx=200;
+  [0,.25,.5,.75,1].forEach(t=>{
+    s+=ln(xs(t),0,xs(t),iH,'var(--border2)',.5);
+    s+=`<text x="${xs(t)}" y="${iH+14}" text-anchor="middle" fill="var(--text3)" font-size="10">${t*100}%</text>`;
   });
-  s+=`<text x="${iW/2}" y="${iH+26}" text-anchor="middle" fill="var(--text3)" font-size="10">Effect on AFINN polarity vs. control</text>`;
-  s+=`</g>`;svg.innerHTML=s;
+  c.conds.forEach((k,i)=>{
+    const y=i*RH, cy=y+RH/2;
+    s+=band(i,y,RH,ml,W);
+    s+=`<text x="-8" y="${cy+4}" text-anchor="end" fill="var(--text2)" font-size="12">${k.short}</text>`;
+    [['no','var(--gz0)',-7,'Did not think of Israel/Gaza'],['yes','var(--gz1)',7,'Thought of Israel/Gaza']].forEach(([grp,col,off,lbl])=>{
+      const d=g.pred[grp][i], yy=cy+off;
+      tips[idx]=`<div class="tt-t">${k.short}</div>${lbl}<br>Pr(genocide): <b>${pct(d.e)}</b><br>[${pct(d.lo)}, ${pct(d.hi)}] · n = ${d.n}`;
+      s+=ln(xs(d.lo),yy,xs(d.hi),yy,col,1.5);
+      s+=`<circle cx="${xs(d.e)}" cy="${yy}" r="5.5" fill="${col}" style="cursor:pointer" onmouseover="showTip(event,${idx})" onmouseout="hideTip()"/>`;
+      idx++;
+    });
+  });
+  s+=`<text x="${iW/2}" y="${iH+28}" text-anchor="middle" fill="var(--text3)" font-size="10">Predicted Pr(classified as genocide), 95% CI</text>`;
+  svg.innerHTML=s+'</g>';
+
+  const cell=d=>`<td class="num"><span class="${d.p<.05?'sig':''}">${d.e>=0?'+':''}${(d.e*100).toFixed(1)}</span> <span class="ci">p = ${fmtP(d.p)}</span></td>`;
+  document.getElementById('gtbody').innerHTML=c.conds.slice(1).map((k,i)=>
+    `<tr><td><span class="dot" style="background:${k.col}"></span>${k.short}</td>${cell(g.eff.no[i])}${cell(g.eff.yes[i])}${cell(g.eff.diff[i])}</tr>`
+  ).join('');
 }
 
 // ── CONTROLS ──────────────────────────────────────────────────────────────────
-function pillSwitch(btn,sel){
-  document.querySelectorAll(sel).forEach(b=>b.classList.remove('on'));
-  btn.classList.add('on');
-}
+function pillSwitch(btn,sel){document.querySelectorAll(sel).forEach(b=>b.classList.remove('on'));btn.classList.add('on');}
 function setMDV(v,btn){mDV=v;pillSwitch(btn,'#means .pill');renderMeans();}
 function setEDV(v,btn){eDV=v;pillSwitch(btn,'#effects .pill:not(.mpill)');renderEffects();}
 function setMod(v,btn){eMod=v;pillSwitch(btn,'#effects .mpill');renderEffects();}
-function setPMod(v,btn){pMod=v;pillSwitch(btn,'#polarity .mpill');renderPolarity();}
+function setSurvey(sv){
+  if(!DATA[sv]) return;
+  SV=sv;
+  document.querySelectorAll('.sw button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.sv===sv));
+  document.title=`Genocide Perceptions — ${sv==='intent'?'Exp 1: Intent':'Exp 2: Tactic × Severity'}`;
+  if(location.hash!=='#'+sv) history.replaceState(null,'','#'+sv);
+  renderAll();
+}
 
 // ── NAV ───────────────────────────────────────────────────────────────────────
+const SECS=['overview','sample','means','effects','response','attitudes','gaza'];
 function navClick(btn){
   document.querySelectorAll('.ntab').forEach(b=>b.classList.remove('on'));
   btn.classList.add('on');
-  const sec=document.getElementById(btn.dataset.sec);
-  if(sec) sec.scrollIntoView({behavior:'smooth',block:'start'});
+  document.getElementById(btn.dataset.sec)?.scrollIntoView({behavior:'smooth',block:'start'});
 }
 window.addEventListener('scroll',()=>{
-  const ids=['overview','sample','means','effects','polarity'];
-  const tabs=document.querySelectorAll('.ntab');
-  let cur=0;
-  ids.forEach((id,i)=>{
-    const el=document.getElementById(id);
-    if(el&&el.getBoundingClientRect().top<110) cur=i;
-  });
-  tabs.forEach((t,i)=>t.classList.toggle('on',i===cur));
+  const off=document.querySelector('.hdr').offsetHeight+20;
+  let curI=0;
+  SECS.forEach((id,i)=>{const el=document.getElementById(id); if(el&&el.getBoundingClientRect().top<off) curI=i;});
+  document.querySelectorAll('.ntab').forEach((t,i)=>t.classList.toggle('on',i===curI));
 },{passive:true});
 
 // ── THEME ─────────────────────────────────────────────────────────────────────
 function toggleTheme(){
   const r=document.documentElement;
-  r.setAttribute('data-theme',r.getAttribute('data-theme')==='dark'?'light':'dark');
-  renderAll();
+  const dark=r.getAttribute('data-theme')?r.getAttribute('data-theme')==='dark':matchMedia('(prefers-color-scheme: dark)').matches;
+  r.setAttribute('data-theme',dark?'light':'dark');
 }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
-function renderAll(){renderMeans();renderEffects();renderPolarity();}
-buildTable();
-renderAll();
+function renderAll(){renderOverview();renderMeans();renderEffects();renderResp();renderAttitudes();renderGaza();}
 window.addEventListener('resize',renderAll);
+window.addEventListener('hashchange',()=>setSurvey(location.hash.slice(1)));
+setSurvey(DATA[location.hash.slice(1)]?location.hash.slice(1):'intent');
 </script>
