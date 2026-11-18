@@ -4,22 +4,17 @@
 # =============================================================================
 # This file contains data from Experiment 2 (Tactic × Severity).
 #
-# Five dependent variables (PAP Table 6):
+# Dependent variables (PAP Table 6):
 #   1. exp_1_genocide_force  — Binary genocide classification (Yes=1/No=2 → 1/0)
-#   2. exp_1_genocide_leve   — Genocide fit scale (1–7)
+#   2. exp_1_genocide_leve   — Genocide fit scale (1–5)
 #   3. exp1_takeaction       — Support for action (Yes=1/No=2 → 1/0)
-#   4–6. action_1/2/4        — Preferred: diplomatic, economic, humanitarian
+#   4–9. exp1_actiontype     — Most-supported response (select one), split into
+#                              6 indicators: diplomatic, economic, humanitarian,
+#                              legal, military, none
 #
 # Treatment assignment is encoded in fl_6_do_fl_30 … fl_6_do_fl_36.
 # Whichever of those is 1 gives tr_num (1 = fl_30, 2 = fl_31, … 7 = fl_36).
 # Condition mapping (user-confirmed):
-#   tr_num == 1 → tactic_baseline     (control)
-#   tr_num == 2 → tactic_infra_high
-#   tr_num == 3 → tactic_infra_low
-#   tr_num == 4 → tactic_kill_high
-#   tr_num == 5 → tactic_kill_low
-#   tr_num == 6 → tactic_sex_high
-#   tr_num == 7 → tactic_sex_low
 # =============================================================================
 
 library(tidyverse)
@@ -64,12 +59,12 @@ d_raw <- d_raw %>%
   mutate(
     condition = case_when(
       tr_num == 1 ~ "tactic_baseline",
-      tr_num == 2 ~ "tactic_infra_high",
-      tr_num == 3 ~ "tactic_infra_low",
-      tr_num == 4 ~ "tactic_kill_high",
-      tr_num == 5 ~ "tactic_kill_low",
-      tr_num == 6 ~ "tactic_sex_high",
-      tr_num == 7 ~ "tactic_sex_low",
+      tr_num == 2 ~ "tactic_kill_low",
+      tr_num == 3 ~ "tactic_kill_high",
+      tr_num == 4 ~ "tactic_sex_low",
+      tr_num == 5 ~ "tactic_sex_high",
+      tr_num == 6 ~ "tactic_infra_low",
+      tr_num == 7 ~ "tactic_infra_high",
       TRUE        ~ NA_character_
     )
   )
@@ -107,7 +102,7 @@ d <- d %>%
       exp_1_genocide_force == 2 ~ 0L,
       TRUE ~ NA_integer_
     ),
-    # DV2: Genocide fit scale (1–7)
+    # DV2: Genocide fit scale (1–5)
     genocide_fit = as.numeric(exp_1_genocide_leve),
     # DV3: Support for international action (1=Yes, 2=No → 1/0)
     support_action = case_when(
@@ -115,10 +110,13 @@ d <- d %>%
       exp1_takeaction == 2 ~ 0L,
       TRUE ~ NA_integer_
     ),
-    # DV4–6: Preferred response types (1=Yes, 2=No → 1/0)
-    action_diplomatic   = if_else(action_1 == 1, 1L, 0L, missing = NA_integer_),
-    action_economic     = if_else(action_2 == 1, 1L, 0L, missing = NA_integer_),
-    action_humanitarian = if_else(action_4 == 1, 1L, 0L, missing = NA_integer_)
+    # DV4–9: Most-supported response (exp1_actiontype, select one) → one indicator per option
+    act_diplomatic   = as.integer(exp1_actiontype == 1),
+    act_economic     = as.integer(exp1_actiontype == 2),
+    act_humanitarian = as.integer(exp1_actiontype == 3),
+    act_legal        = as.integer(exp1_actiontype == 4),
+    act_military     = as.integer(exp1_actiontype == 5),
+    act_none         = as.integer(exp1_actiontype == 6)
   )
 
 # -----------------------------------------------------------------------------
@@ -157,17 +155,14 @@ print(table(d$cond, useNA = "always"))
 # -----------------------------------------------------------------------------
 d <- d %>%
   mutate(
-    ideology_num = as.numeric(ideology),
-    party_dem    = if_else(party == "Democrat",    1L, 0L, missing = NA_integer_),
-    party_rep    = if_else(party == "Republican",  1L, 0L, missing = NA_integer_),
-    educ_num = as.numeric(factor(educ,
-      levels = c("Less than high school", "High school graduate or GED",
-                 "2-year or associate degree", "College degree",
-                 "Post-graduate degree"),
-      ordered = TRUE)),
-    news_num = as.numeric(pre_news),
-    age_num  = as.numeric(age),
-    female   = if_else(gender == "Female", 1L, 0L, missing = NA_integer_)
+    # Raw CSV stores numeric codes (see 2026-138a_codebook.xlsx)
+    ideology_num = as.numeric(ideology),                       # 1 = very liberal … 5
+    party_dem    = as.integer(party == 2),                     # 1 Rep, 2 Dem, 3 Ind, 4 Other
+    party_rep    = as.integer(party == 1),
+    educ_num     = as.numeric(educ),                           # 1–7
+    news_num     = 6 - as.numeric(pre_news),                   # recoded so 5 = extremely closely
+    age_num      = as.numeric(age),                            # 1 = 18–29 … 8 = 90+
+    female       = case_when(gender == 2 ~ 1L, gender == 1 ~ 0L, TRUE ~ NA_integer_)
   )
 
 CONTROLS <- c("ideology_num", "party_dem", "party_rep", "educ_num",
@@ -176,14 +171,18 @@ CONTROLS <- c("ideology_num", "party_dem", "party_rep", "educ_num",
 # =============================================================================
 # 7. Estimation: OLS with HC2 robust SEs, with and without controls
 # =============================================================================
-DVS    <- c("genocide_binary", "genocide_fit", "support_action",
-            "action_diplomatic", "action_economic", "action_humanitarian")
+ACT_DVS <- c("act_diplomatic", "act_economic", "act_humanitarian",
+             "act_legal", "act_military", "act_none")
+DVS    <- c("genocide_binary", "genocide_fit", "support_action", ACT_DVS)
 DVLABS <- c("Genocide classification\n(binary)",
-            "Genocide fit\n(1–7 scale)",
+            "Genocide fit\n(1–5 scale)",
             "Support for\ninternational action",
-            "Preferred: Diplomatic",
-            "Preferred: Economic sanctions",
-            "Preferred: Humanitarian")
+            "Most supported: Diplomatic pressure",
+            "Most supported: Economic sanctions",
+            "Most supported: Humanitarian assistance",
+            "Most supported: Legal accountability",
+            "Most supported: Military intervention",
+            "Most supported: None of the above")
 
 run_models <- function(data, dv, dv_label, controls = CONTROLS) {
   sub <- data %>%
@@ -273,7 +272,7 @@ p <- ggplot(plot_df,
   )
 
 ggsave(file.path(OUT_DIR, "fig_tactic_severity.png"), p,
-       width = 14, height = 8, dpi = 300)
+       width = 14, height = 11, dpi = 300)
 message("Saved: fig_tactic_severity.png")
 
 # =============================================================================
@@ -288,6 +287,7 @@ summary_table <- d %>%
     se_genocide   = sd(genocide_binary,   na.rm = TRUE) / sqrt(n()),
     mean_fit      = mean(genocide_fit,    na.rm = TRUE),
     mean_action   = mean(support_action,  na.rm = TRUE),
+    across(all_of(ACT_DVS), ~ mean(.x, na.rm = TRUE), .names = "mean_{.col}"),
     .groups = "drop"
   )
 
