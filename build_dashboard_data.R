@@ -85,6 +85,29 @@ att_block <- function(sv) {
 tactic$att <- att_block("tactic")
 intent$att <- att_block("intent")
 
+# --- Cross tabs: share saying "genocide" by respondent characteristic --------
+xt  <- read_csv(file.path(FIG, "crosstabs", "crosstabs_genocide_binary.csv"), show_col_types = FALSE)
+xtc <- read_csv(file.path(FIG, "crosstabs", "crosstabs_chisq.csv"), show_col_types = FALSE)
+XT_VARS <- c("age", "gender", "income", "educ", "party", "ideology", "religion", "religiosity",
+             "news", "warnews", "n_platforms")
+XT_PLAT <- c(sm_facebook = "Facebook", sm_x = "Twitter/X", sm_instagram = "Instagram", sm_tiktok = "TikTok",
+             sm_youtube = "YouTube", sm_other = "Other platform", sm_none = "No social media")
+xtab_block <- function(sv_label, overall) {
+  x <- filter(xt, survey == sv_label); cc <- filter(xtc, survey == sv_label)
+  vars <- setNames(lapply(XT_VARS, function(v) {
+    r <- filter(x, var == v)
+    list(p_chi = cc$p_chi[cc$var == v], rows = transmute(r, level, n, p, lo, hi))
+  }), XT_VARS)
+  plat <- lapply(names(XT_PLAT), function(v) {
+    r <- filter(x, var == v); u <- r[str_ends(r$level, " user"), ]; nu <- r[str_ends(r$level, "non-user"), ]
+    list(platform = XT_PLAT[[v]], p_chi = cc$p_chi[cc$var == XT_PLAT[[v]]],
+         user = list(p = u$p, lo = u$lo, hi = u$hi, n = u$n), non = list(p = nu$p, lo = nu$lo, hi = nu$hi, n = nu$n))
+  })
+  list(overall = overall, vars = vars, platforms = plat)
+}
+tactic$xtab <- xtab_block("Exp 2: Tactic × Severity", weighted.mean(t_means$mean_genocide, t_means$n))
+intent$xtab <- xtab_block("Exp 1: Intent", weighted.mean(i_means$genocide_binary_mean, i_means$n))
+
 js <- paste0("const DATA = ", toJSON(list(intent = intent, tactic = tactic), auto_unbox = TRUE, digits = NA,
                                       dataframe = "rows"), ";")
 
