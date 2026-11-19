@@ -1,0 +1,37 @@
+survey,p_chi,var
+Exp 1: Intent,4.670816909379756e-4,age
+Exp 2: Tactic × Severity,0.0465630881929614,age
+Exp 1: Intent,4.328893783745576e-6,gender
+Exp 2: Tactic × Severity,4.0574816688386237e-7,gender
+Exp 1: Intent,0.03384774508851758,income
+Exp 2: Tactic × Severity,5.968850963643888e-4,income
+Exp 1: Intent,0.005319506037578034,educ
+Exp 2: Tactic × Severity,1.1635129780230118e-8,educ
+Exp 1: Intent,0.0016549948966969106,party
+Exp 2: Tactic × Severity,0.02676849694806103,party
+Exp 1: Intent,2.158189640832454e-4,ideology
+Exp 2: Tactic × Severity,0.017530762864309584,ideology
+Exp 1: Intent,0.17942404893766278,religion
+Exp 2: Tactic × Severity,1.9145402086715848e-7,religion
+Exp 1: Intent,0.846196620812282,religiosity
+Exp 2: Tactic × Severity,0.09362950321746401,religiosity
+Exp 1: Intent,0.38363446578055604,news
+Exp 2: Tactic × Severity,0.0022541090965956198,news
+Exp 1: Intent,0.02266451329162636,warnews
+Exp 2: Tactic × Severity,0.024884295412334268,warnews
+Exp 1: Intent,0.0018382192018726918,n_platforms
+Exp 2: Tactic × Severity,4.2747775561514605e-7,n_platforms
+Exp 1: Intent,0.2625610955392092,Facebook
+Exp 2: Tactic × Severity,0.0035258779312873486,Facebook
+Exp 1: Intent,0.2899559732075166,Twitter/X
+Exp 2: Tactic × Severity,2.1944317197294824e-4,Twitter/X
+Exp 1: Intent,8.54926618095858e-5,Instagram
+Exp 2: Tactic × Severity,1.4751365494697065e-5,Instagram
+Exp 1: Intent,1.1002233119731879e-9,TikTok
+Exp 2: Tactic × Severity,4.735914834421836e-8,TikTok
+Exp 1: Intent,0.6041105822431418,YouTube
+Exp 2: Tactic × Severity,0.011530755079313114,YouTube
+Exp 1: Intent,0.04224806197861962,Other platform
+Exp 2: Tactic × Severity,0.0016753238490377783,Other platform
+Exp 1: Intent,0.11097587960652225,No social media
+Exp 2: Tactic × Severity,0.04973058509409528,No social media
