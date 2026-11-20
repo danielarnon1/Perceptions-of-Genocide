@@ -24,6 +24,7 @@ code_vars <- function(df, sv) {
   rel <- as.numeric(df$religion)
   tibble(
     survey = SURVEY_LBL[[sv]],
+    arm = as.character(if (e2) df$cond else df$arm),
     genocide = df$genocide_binary,
     age = lv(pmin(as.numeric(df$age), 6), 1:6, c("18–29", "30–39", "40–49", "50–59", "60–69", "70+")),
     gender = lv(as.numeric(df$gender), 1:2, c("Male", "Female")),

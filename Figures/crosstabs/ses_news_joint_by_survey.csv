@@ -1,0 +1,97 @@
+survey,ses_level,news_level,n,p,ses,news
+Exp 1: Intent,High school or less,Not closely,136,0.4485294117647059,Education,Follows international news
+Exp 1: Intent,High school or less,Somewhat closely,175,0.52,Education,Follows international news
+Exp 1: Intent,High school or less,Very / extremely closely,90,0.7111111111111111,Education,Follows international news
+Exp 1: Intent,Some college / associate,Not closely,77,0.5194805194805194,Education,Follows international news
+Exp 1: Intent,Some college / associate,Somewhat closely,180,0.5111111111111111,Education,Follows international news
+Exp 1: Intent,Some college / associate,Very / extremely closely,114,0.5964912280701754,Education,Follows international news
+Exp 1: Intent,Bachelor's degree,Not closely,48,0.4791666666666667,Education,Follows international news
+Exp 1: Intent,Bachelor's degree,Somewhat closely,120,0.43333333333333335,Education,Follows international news
+Exp 1: Intent,Bachelor's degree,Very / extremely closely,118,0.4322033898305085,Education,Follows international news
+Exp 1: Intent,Postgraduate,Not closely,28,0.2857142857142857,Education,Follows international news
+Exp 1: Intent,Postgraduate,Somewhat closely,95,0.47368421052631576,Education,Follows international news
+Exp 1: Intent,Postgraduate,Very / extremely closely,118,0.3898305084745763,Education,Follows international news
+Exp 2: Tactic × Severity,High school or less,Not closely,228,0.5350877192982456,Education,Follows international news
+Exp 2: Tactic × Severity,High school or less,Somewhat closely,276,0.6086956521739131,Education,Follows international news
+Exp 2: Tactic × Severity,High school or less,Very / extremely closely,226,0.668141592920354,Education,Follows international news
+Exp 2: Tactic × Severity,Some college / associate,Not closely,179,0.5251396648044693,Education,Follows international news
+Exp 2: Tactic × Severity,Some college / associate,Somewhat closely,298,0.5302013422818792,Education,Follows international news
+Exp 2: Tactic × Severity,Some college / associate,Very / extremely closely,225,0.5333333333333333,Education,Follows international news
+Exp 2: Tactic × Severity,Bachelor's degree,Not closely,90,0.4777777777777778,Education,Follows international news
+Exp 2: Tactic × Severity,Bachelor's degree,Somewhat closely,231,0.5064935064935064,Education,Follows international news
+Exp 2: Tactic × Severity,Bachelor's degree,Very / extremely closely,299,0.4782608695652174,Education,Follows international news
+Exp 2: Tactic × Severity,Postgraduate,Not closely,66,0.3484848484848485,Education,Follows international news
+Exp 2: Tactic × Severity,Postgraduate,Somewhat closely,155,0.3741935483870968,Education,Follows international news
+Exp 2: Tactic × Severity,Postgraduate,Very / extremely closely,222,0.44594594594594594,Education,Follows international news
+Exp 1: Intent,High school or less,Not closely,129,0.4573643410852713,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,High school or less,Somewhat closely,165,0.49696969696969695,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,High school or less,Very / extremely closely,107,0.7009345794392523,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Some college / associate,Not closely,72,0.4722222222222222,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Some college / associate,Somewhat closely,163,0.5337423312883436,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Some college / associate,Very / extremely closely,136,0.5808823529411765,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Bachelor's degree,Not closely,47,0.3829787234042553,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Bachelor's degree,Somewhat closely,127,0.4330708661417323,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Bachelor's degree,Very / extremely closely,112,0.4732142857142857,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Postgraduate,Not closely,28,0.25,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Postgraduate,Somewhat closely,94,0.44680851063829785,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Postgraduate,Very / extremely closely,119,0.42016806722689076,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,High school or less,Not closely,214,0.5420560747663551,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,High school or less,Somewhat closely,268,0.5932835820895522,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,High school or less,Very / extremely closely,248,0.6693548387096774,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Some college / associate,Not closely,165,0.5212121212121212,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Some college / associate,Somewhat closely,281,0.5266903914590747,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Some college / associate,Very / extremely closely,256,0.5390625,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Bachelor's degree,Not closely,79,0.4177215189873418,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Bachelor's degree,Somewhat closely,243,0.5308641975308642,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Bachelor's degree,Very / extremely closely,298,0.47315436241610737,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Postgraduate,Not closely,69,0.30434782608695654,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Postgraduate,Somewhat closely,162,0.36419753086419754,Education,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Postgraduate,Very / extremely closely,212,0.4716981132075472,Education,Follows news on wars and violence against civilians
+Exp 1: Intent,Under $50k,Not closely,120,0.4583333333333333,Individual income,Follows international news
+Exp 1: Intent,Under $50k,Somewhat closely,183,0.546448087431694,Individual income,Follows international news
+Exp 1: Intent,Under $50k,Very / extremely closely,107,0.5981308411214953,Individual income,Follows international news
+Exp 1: Intent,$50–100k,Not closely,102,0.45098039215686275,Individual income,Follows international news
+Exp 1: Intent,$50–100k,Somewhat closely,205,0.5024390243902439,Individual income,Follows international news
+Exp 1: Intent,$50–100k,Very / extremely closely,163,0.5460122699386503,Individual income,Follows international news
+Exp 1: Intent,$100–150k,Not closely,41,0.4878048780487805,Individual income,Follows international news
+Exp 1: Intent,$100–150k,Somewhat closely,91,0.4175824175824176,Individual income,Follows international news
+Exp 1: Intent,$100–150k,Very / extremely closely,80,0.5375,Individual income,Follows international news
+Exp 1: Intent,$150k+,Not closely,17,0.35294117647058826,Individual income,Follows international news
+Exp 1: Intent,$150k+,Somewhat closely,63,0.38095238095238093,Individual income,Follows international news
+Exp 1: Intent,$150k+,Very / extremely closely,78,0.358974358974359,Individual income,Follows international news
+Exp 2: Tactic × Severity,Under $50k,Not closely,246,0.5447154471544715,Individual income,Follows international news
+Exp 2: Tactic × Severity,Under $50k,Somewhat closely,316,0.5727848101265823,Individual income,Follows international news
+Exp 2: Tactic × Severity,Under $50k,Very / extremely closely,200,0.645,Individual income,Follows international news
+Exp 2: Tactic × Severity,$50–100k,Not closely,208,0.5288461538461539,Individual income,Follows international news
+Exp 2: Tactic × Severity,$50–100k,Somewhat closely,348,0.514367816091954,Individual income,Follows international news
+Exp 2: Tactic × Severity,$50–100k,Very / extremely closely,430,0.5162790697674419,Individual income,Follows international news
+Exp 2: Tactic × Severity,$100–150k,Not closely,48,0.3125,Individual income,Follows international news
+Exp 2: Tactic × Severity,$100–150k,Somewhat closely,159,0.5220125786163522,Individual income,Follows international news
+Exp 2: Tactic × Severity,$100–150k,Very / extremely closely,177,0.5084745762711864,Individual income,Follows international news
+Exp 2: Tactic × Severity,$150k+,Not closely,30,0.26666666666666666,Individual income,Follows international news
+Exp 2: Tactic × Severity,$150k+,Somewhat closely,93,0.43010752688172044,Individual income,Follows international news
+Exp 2: Tactic × Severity,$150k+,Very / extremely closely,138,0.4492753623188406,Individual income,Follows international news
+Exp 1: Intent,Under $50k,Not closely,115,0.43478260869565216,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,Under $50k,Somewhat closely,170,0.5352941176470588,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,Under $50k,Very / extremely closely,125,0.624,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$50–100k,Not closely,95,0.4,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$50–100k,Somewhat closely,202,0.504950495049505,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$50–100k,Very / extremely closely,173,0.5664739884393064,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$100–150k,Not closely,35,0.4857142857142857,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$100–150k,Somewhat closely,91,0.42857142857142855,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$100–150k,Very / extremely closely,86,0.5232558139534884,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$150k+,Not closely,18,0.3333333333333333,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$150k+,Somewhat closely,62,0.3548387096774194,Individual income,Follows news on wars and violence against civilians
+Exp 1: Intent,$150k+,Very / extremely closely,78,0.38461538461538464,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Under $50k,Not closely,227,0.5330396475770925,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Under $50k,Somewhat closely,307,0.5798045602605864,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,Under $50k,Very / extremely closely,228,0.6359649122807017,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$50–100k,Not closely,190,0.49473684210526314,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$50–100k,Somewhat closely,360,0.5027777777777778,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$50–100k,Very / extremely closely,436,0.5412844036697247,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$100–150k,Not closely,46,0.3695652173913043,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$100–150k,Somewhat closely,153,0.5228758169934641,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$100–150k,Very / extremely closely,185,0.4918918918918919,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$150k+,Not closely,37,0.32432432432432434,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$150k+,Somewhat closely,89,0.42696629213483145,Individual income,Follows news on wars and violence against civilians
+Exp 2: Tactic × Severity,$150k+,Very / extremely closely,135,0.4444444444444444,Individual income,Follows news on wars and violence against civilians
