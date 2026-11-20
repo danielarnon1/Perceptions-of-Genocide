@@ -105,6 +105,28 @@ xtab_block <- function(sv_label, overall) {
   })
   list(overall = overall, vars = vars, platforms = plat)
 }
+ses_comp <- read_csv(file.path(FIG, "crosstabs", "ses_news_composition.csv"), show_col_types = FALSE)
+ses_jnt  <- read_csv(file.path(FIG, "crosstabs", "ses_news_joint_by_survey.csv"), show_col_types = FALSE)
+ses_int  <- read_csv(file.path(FIG, "crosstabs", "ses_news_interaction_by_survey.csv"), show_col_types = FALSE)
+ses_block <- function(sv_label) {
+  WAR <- "Follows news on wars and violence against civilians"
+  grp <- function(lbl) {
+    comp <- filter(ses_comp, survey == sv_label, ses == lbl)
+    j <- filter(ses_jnt, survey == sv_label, ses == lbl, news == WAR)
+    lapply(unique(comp$level), function(l) {
+      cc <- filter(comp, level == l); a <- filter(j, ses_level == l)
+      end <- function(k) { r <- filter(a, news_level == k); list(p = r$p, n = r$n) }
+      list(level = l,
+           intl = cc$share[str_detect(cc$item, "international")], war = cc$share[str_detect(cc$item, "war")], n = cc$n[1],
+           lo = end("Not closely"), hi = end("Very / extremely closely"))
+    })
+  }
+  ip <- filter(ses_int, survey == sv_label)
+  list(educ = grp("Education"), inc = grp("Individual income"), p_educ = ip$p_educ, p_inc = ip$p_inc)
+}
+tactic$ses <- ses_block("Exp 2: Tactic × Severity")
+intent$ses <- ses_block("Exp 1: Intent")
+
 tactic$xtab <- xtab_block("Exp 2: Tactic × Severity", weighted.mean(t_means$mean_genocide, t_means$n))
 intent$xtab <- xtab_block("Exp 1: Intent", weighted.mean(i_means$genocide_binary_mean, i_means$n))
 

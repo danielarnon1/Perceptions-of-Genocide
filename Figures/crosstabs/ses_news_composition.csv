@@ -1,0 +1,33 @@
+survey,level,n,ses,item,share,se
+Exp 1: Intent,High school or less,401,Education,Follows international news very/extremely closely,0.22443890274314215,0.020834586729427253
+Exp 1: Intent,High school or less,401,Education,Follows war/conflict news very/extremely closely,0.26683291770573564,0.02208762371854698
+Exp 1: Intent,Some college / associate,371,Education,Follows international news very/extremely closely,0.30727762803234504,0.023952901187924872
+Exp 1: Intent,Some college / associate,371,Education,Follows war/conflict news very/extremely closely,0.3665768194070081,0.025017420069931084
+Exp 1: Intent,Bachelor's degree,286,Education,Follows international news very/extremely closely,0.4125874125874126,0.029110294214198376
+Exp 1: Intent,Bachelor's degree,286,Education,Follows war/conflict news very/extremely closely,0.3916083916083916,0.028862542523919052
+Exp 1: Intent,Postgraduate,241,Education,Follows international news very/extremely closely,0.4896265560165975,0.03220089891144462
+Exp 1: Intent,Postgraduate,241,Education,Follows war/conflict news very/extremely closely,0.49377593360995853,0.03220533582485341
+Exp 2: Tactic × Severity,High school or less,730,Education,Follows international news very/extremely closely,0.3095890410958904,0.017111386368867998
+Exp 2: Tactic × Severity,High school or less,730,Education,Follows war/conflict news very/extremely closely,0.33972602739726027,0.017529320005961996
+Exp 2: Tactic × Severity,Some college / associate,702,Education,Follows international news very/extremely closely,0.32051282051282054,0.017613464174532665
+Exp 2: Tactic × Severity,Some college / associate,702,Education,Follows war/conflict news very/extremely closely,0.3646723646723647,0.018166938409189683
+Exp 2: Tactic × Severity,Bachelor's degree,620,Education,Follows international news very/extremely closely,0.482258064516129,0.02006783752133547
+Exp 2: Tactic × Severity,Bachelor's degree,620,Education,Follows war/conflict news very/extremely closely,0.4806451612903226,0.020065432891583697
+Exp 2: Tactic × Severity,Postgraduate,443,Education,Follows international news very/extremely closely,0.5011286681715575,0.02375565638277398
+Exp 2: Tactic × Severity,Postgraduate,443,Education,Follows war/conflict news very/extremely closely,0.4785553047404063,0.023733857531595553
+Exp 1: Intent,Under $50k,410,Individual income,Follows international news very/extremely closely,0.26097560975609757,0.021688894588241026
+Exp 1: Intent,Under $50k,410,Individual income,Follows war/conflict news very/extremely closely,0.3048780487804878,0.02273535037049134
+Exp 1: Intent,$50–100k,470,Individual income,Follows international news very/extremely closely,0.3468085106382979,0.021954128559879337
+Exp 1: Intent,$50–100k,470,Individual income,Follows war/conflict news very/extremely closely,0.3680851063829787,0.02224613094938179
+Exp 1: Intent,$100–150k,212,Individual income,Follows international news very/extremely closely,0.37735849056603776,0.033291101718066325
+Exp 1: Intent,$100–150k,212,Individual income,Follows war/conflict news very/extremely closely,0.4056603773584906,0.03372334975750856
+Exp 1: Intent,$150k+,158,Individual income,Follows international news very/extremely closely,0.4936708860759494,0.03977467726296488
+Exp 1: Intent,$150k+,158,Individual income,Follows war/conflict news very/extremely closely,0.4936708860759494,0.03977467726296488
+Exp 2: Tactic × Severity,Under $50k,762,Individual income,Follows international news very/extremely closely,0.26246719160104987,0.01593861934195369
+Exp 2: Tactic × Severity,Under $50k,762,Individual income,Follows war/conflict news very/extremely closely,0.2992125984251969,0.01658844186086142
+Exp 2: Tactic × Severity,$50–100k,986,Individual income,Follows international news very/extremely closely,0.43610547667342797,0.015792695113698275
+Exp 2: Tactic × Severity,$50–100k,986,Individual income,Follows war/conflict news very/extremely closely,0.4421906693711968,0.015816457436929696
+Exp 2: Tactic × Severity,$100–150k,384,Individual income,Follows international news very/extremely closely,0.4609375,0.025437531792248252
+Exp 2: Tactic × Severity,$100–150k,384,Individual income,Follows war/conflict news very/extremely closely,0.4817708333333333,0.02549855477331422
+Exp 2: Tactic × Severity,$150k+,261,Individual income,Follows international news very/extremely closely,0.5287356321839081,0.030898068945041424
+Exp 2: Tactic × Severity,$150k+,261,Individual income,Follows war/conflict news very/extremely closely,0.5172413793103449,0.030930817304996704
